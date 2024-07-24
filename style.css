@@ -54,7 +54,7 @@ img{
 }
 
 .name{
-    color: rgb(240, 157, 183);
+    color: #f09db7;
     transition: color 5s;
 }
 .name:hover{
@@ -165,7 +165,7 @@ section:hover{
     justify-content: space-between;
 }
 
-.home-title, .about-me-title, .projects-title{
+.home-title, .about-me-title, .projects-title, .code-snippets-title{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size:xx-large;
     font-weight: bold;
@@ -189,7 +189,7 @@ section:hover{
     font-weight: bold;
     display: block;
     padding: 15px;
-    margin-top: 35px;
+    margin-top: 75px;
     margin-left: 30px;
     margin-right: 30px;
     margin-bottom: 75px;
@@ -215,21 +215,37 @@ section:hover{
     border-style: groove;
     border-color: #a3ffaf;
     box-shadow: 2px 2px 5px#112113;
+
 }
 
 .home-linkedin{
     font-size: 1vw;
     background-color: #6dc676;
+    transition: background-color 0.5s;
+}
+
+.home-linkedin:hover{
+    background-color: #98dc9f;
 }
 
 .home-github{
     font-size: 1vw;
     background-color: #4aa453;
+    transition: background-color 0.5s;
+}
+
+.home-github:hover{
+    background-color: #5aba64;
 }
 
 .home-email{
     font-size: 1vw;
     background-color: #428448;
+    transition: background-color 0.5s;
+}
+
+.home-email:hover{
+    background-color: #509856;
 }
 
 .home-right{
@@ -289,8 +305,21 @@ section:hover{
 
 }
 
+.about-me-right{
+    transition: color 0.75s;
+}
+
+.about-me-right:hover{
+    color: #5a7f5d;
+}
+
 .about-me-right-other{
     color: #d8456e;
+    transition: color 0.75s;
+}
+
+.about-me-right-other:hover{
+    color: #ed678d;
 }
 
 .projects p{
@@ -311,7 +340,7 @@ section:hover{
 }
 
 .project-name:hover{
-    color: #62d26d;
+    color: #db5882;
 }
 
 .projects-project{
@@ -326,6 +355,38 @@ section:hover{
     box-shadow: 2px 5px 6px rgb(31, 31, 31);
 }
 
+.code-snippet{
+    text-align: center;
+    margin-top: 25px;
+    height: 10%;
+}
+
+.code-snippet-image{
+    widtH: 65%;
+    border-radius: 50px;
+}
+
+.code-snippets p{
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #566357;
+}
+
+.code-snippet-name{
+    color: #82c189;
+    transition: color 0.75s;
+}
+
+.code-snippet-name:hover{
+    color: #88ff98;
+}
+
 .bottomBar{
     display: flex;
     color: #deb1bf;
@@ -335,16 +396,38 @@ section:hover{
     font-size: large;
     text-align: center;
     margin: 0;
-    margin-top: 2000px;
-}
-
-.bottomBar-item{
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-top: 20px;
+    display: flex;
 }
 
 .bottomBar a{
     color: #deb1bf;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bottomBar a:hover{
+    text-decoration: underline;
+}
+
+.bottomBar-left{
+    margin-left: 25px;
+    flex: 1;
+    text-align: start;
+}
+
+.bottomBar-left a{
+    padding-right: 25px
+}
+
+.bottomBar-center{
+    flex: 1;
+    text-align: end;
+    margin-right: 25px;
+}
+
+.bottomBar-center a{
+    padding-left: 25px
 }
 
 @media (max-width: 790px){
