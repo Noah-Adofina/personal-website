@@ -1,6 +1,6 @@
 html{
-    color: #593742;
-    background-color: #deb1bf;
+    color: #566357;
+    background-color: #add9b1;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     scroll-behavior: smooth;
 }
@@ -25,12 +25,12 @@ img{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ffe9f0; /* Color of the scrollbar thumb */
+    background: #ffb6cd; /* Color of the scrollbar thumb */
     border-radius: 10px; /* Round the corners of the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #ffb6cd; /* Color of the scrollbar thumb when hovered */
+    background: #f6c5d3; /* Color of the scrollbar thumb when hovered */
 }
 
 .header{
@@ -38,10 +38,10 @@ img{
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #deb1bf;
+    background-color: #add9b1;
     z-index: 1;
     height: 150px;
-    box-shadow: 2px 2px 3px#5b2535;
+    box-shadow: 2px 2px 3px#566357;
 }
 
 .introduction{
@@ -54,25 +54,25 @@ img{
 }
 
 .name{
-    color: #dd4374;
+    color: rgb(240, 157, 183);
     transition: color 5s;
 }
 .name:hover{
-    color: #6ccd76;
+    color: #7dcd85;
 }
 
 .self-taught, .software-developer{
-    color: #fee2eb;
+    color: #e9f2ea;
     transition: color 1.25s;
 }
 
 .self-taught:hover, .software-developer:hover{
-    color: #dd4374;
+    color: #88ff98;
 }
 
 .navbar{
     display: flex;
-    color: #593742;
+    color: #566357;
     border-style: solid;
     border-width: 2x;
     border-left: hidden;
@@ -92,7 +92,7 @@ img{
 }
 
 .navbar-left a{
-    color: #593742;
+    color: #566357;
     font-weight: bold;
     font-size: larger;
     text-decoration: none;
@@ -120,7 +120,7 @@ img{
     padding-right: 30px;
 }
 .contact{
-    color: #ffdde7;
+    color: #e9f2ea;
     text-decoration: none;
     font-weight: 100;
     padding: 5px;
@@ -129,17 +129,17 @@ img{
     text-align: center;
     border-style: solid;
     border-width: 3px;
-    border-color: #593742;
+    border-color: #566357;
     border-radius: 20px;
-    background-color: #845f6a;
+    background-color: #6dc676;
     cursor: pointer;
     transition: color 0.5s,
     background-color 0.25s;
 }
 
 .contact:hover{
-    color: #f6dee6;
-    background-color: #5b2535;
+    color: #f2fdf3;
+    background-color: #7ed787;
 }
 
 .contact:active{
@@ -175,7 +175,7 @@ section:hover{
 }
 
 .home, .projects{
-    background-color: #f77dbc;
+    background-color: #ff9cbc;
 }
 
 .home-title, .projects-title{
@@ -219,17 +219,17 @@ section:hover{
 
 .home-linkedin{
     font-size: 1vw;
-    background-color: #50a859;
+    background-color: #6dc676;
 }
 
 .home-github{
     font-size: 1vw;
-    background-color: #32833a;
+    background-color: #4aa453;
 }
 
 .home-email{
     font-size: 1vw;
-    background-color: #27642d;
+    background-color: #428448;
 }
 
 .home-right{
@@ -255,9 +255,9 @@ section:hover{
 
 .about-me-box{
     background-color: #423035;
-    border-style: groove;
+    border-style: solid;
     border-width: 5px;
-    border-color: #b9a8ad;
+    border-color: #a17272;
     width: 100%;
     height: 100%;
     margin: 20px;
@@ -311,7 +311,7 @@ section:hover{
 }
 
 .project-name:hover{
-    color: #dd4374;
+    color: #62d26d;
 }
 
 .projects-project{
@@ -319,7 +319,11 @@ section:hover{
 }
 
 .project-gif{
-    width: 55%
+    width: 55%;
+    border-style: solid;
+    border-color: #593742;
+    border-width: 5px;
+    box-shadow: 2px 5px 6px rgb(31, 31, 31);
 }
 
 .bottomBar{
