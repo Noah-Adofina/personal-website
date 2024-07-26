@@ -165,7 +165,7 @@ section:hover{
     justify-content: space-between;
 }
 
-.home-title, .about-me-title, .projects-title, .code-snippets-title{
+.home-title, .about-me-title, .projects-title, .code-snippets-title, .headstarter-title{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size:xx-large;
     font-weight: bold;
@@ -174,7 +174,7 @@ section:hover{
     text-align: start;
 }
 
-.home, .projects{
+.home, .projects, .headstarter{
     background-color: #ff9cbc;
 }
 
@@ -379,12 +379,43 @@ section:hover{
 }
 
 .code-snippet-name{
-    color: #82c189;
+    color: #69ae71;
     transition: color 0.75s;
 }
 
 .code-snippet-name:hover{
-    color: #88ff98;
+    color: #63d971;
+}
+
+.headstarter{
+    padding-bottom: 10px;
+}
+
+.headstarter img{
+    width: 65%;
+    margin-top: 50px;
+    border-radius: 50px;
+}
+
+.headstarter p{
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #566357;
+}
+
+.headstarter-project-name{
+    color: #fee2eb;
+    transition: color 0.75s;
+}
+
+.headstarter-project-name:hover{
+    color: #db5882;
 }
 
 .bottomBar{
@@ -396,7 +427,6 @@ section:hover{
     font-size: large;
     text-align: center;
     margin: 0;
-    margin-top: 20px;
     display: flex;
 }
 
