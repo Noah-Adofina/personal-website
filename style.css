@@ -418,6 +418,13 @@ section:hover{
     color: #db5882;
 }
 
+.headstarter-video{
+    margin-top: 40px;
+    width: 65vw;
+    height: 65vh;
+    border-radius: 50px;
+}
+
 .bottomBar{
     display: flex;
     color: #deb1bf;
