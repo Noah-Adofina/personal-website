@@ -1,0 +1,156 @@
+
+.home-content, .about-me-content, .projects-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-title, .about-me-title, .projects-title, .code-snippets-title, .headstarter-title{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:xx-large;
+    font-weight: bold;
+    padding-top: 25px;
+    padding-left: 50px;
+    text-align: start;
+}
+
+.home, .projects, .headstarter{
+    background-color: #ff9cbc;
+}
+
+.home-title, .projects-title{
+    color: #ffe1f0;
+}
+
+.home-left{
+    flex: 1;
+    padding-top: 50px;
+}
+
+
+.home-right{
+    flex: 2;
+    padding: 10px;
+}
+
+.home-image{
+    height: 80%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.about-me{
+    margin-bottom: 75px
+}
+
+.about-me-content-left{
+    flex: 1;
+    margin-right: 30px;
+}
+
+.about-me-content-right{
+    flex: 1;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: start;
+    padding-left: 75px;
+    padding-right: 15px;
+    padding-top: 50px;
+    line-height: 75px;
+
+}
+
+.about-me-right{
+    transition: color 0.75s;
+}
+
+.about-me-right:hover{
+    color: #5a7f5d;
+}
+
+.about-me-right-other{
+    color: #d8456e;
+    transition: color 0.75s;
+}
+
+.about-me-right-other:hover{
+    color: #ed678d;
+}
+
+.projects p{
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #593742;
+}
+
+.project-name{
+    color: #fee2eb;
+    transition: color 0.75s;
+}
+
+.project-name:hover{
+    color: #db5882;
+}
+
+.projects-project{
+    text-align: center;
+}
+
+
+.code-snippet{
+    text-align: center;
+    margin-top: 25px;
+    height: 10%;
+}
+
+.code-snippets p{
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #566357;
+}
+
+.code-snippet-name{
+    color: #69ae71;
+    transition: color 0.75s;
+}
+
+.code-snippet-name:hover{
+    color: #63d971;
+}
+
+.headstarter{
+    padding-bottom: 10px;
+}
+
+.headstarter p{
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #566357;
+}
+
+.headstarter-project-name{
+    color: #fee2eb;
+    transition: color 0.75s;
+}
+
+.headstarter-project-name:hover{
+    color: #db5882;
+}

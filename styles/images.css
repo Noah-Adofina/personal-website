@@ -1,0 +1,45 @@
+
+.image-me{
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    border-radius: 75px;
+    width: 25%;
+    height: 17%;
+    margin-top: 50px;
+    border-style: groove;
+    border-color: #a3ffaf;
+    box-shadow: 2px 2px 5px#112113;
+
+}
+
+.godot-logo{
+    display: block;
+    width: 40%;
+    padding-top: 30px;
+    padding-left: 35px;
+}
+
+.csharp-logo{
+    width: 20%;
+    padding-left: 200px;
+}
+
+.project-gif{
+    width: 55%;
+    border-style: solid;
+    border-color: #593742;
+    border-width: 5px;
+    box-shadow: 2px 5px 6px rgb(31, 31, 31);
+}
+
+.code-snippet-image{
+    widtH: 65%;
+    border-radius: 50px;
+}
+
+.headstarter img{
+    width: 65%;
+    margin-top: 50px;
+    border-radius: 50px;
+}

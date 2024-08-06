@@ -1,0 +1,42 @@
+
+.bottomBar{
+    display: flex;
+    color: #deb1bf;
+    background-color: #593742;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-size: large;
+    text-align: center;
+    margin: 0;
+    display: flex;
+}
+
+.bottomBar a{
+    color: #deb1bf;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bottomBar a:hover{
+    text-decoration: underline;
+}
+
+.bottomBar-left{
+    margin-left: 25px;
+    flex: 1;
+    text-align: start;
+}
+
+.bottomBar-left a{
+    padding-right: 25px
+}
+
+.bottomBar-center{
+    flex: 1;
+    text-align: end;
+    margin-right: 25px;
+}
+
+.bottomBar-center a{
+    padding-left: 25px
+}
