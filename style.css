@@ -240,13 +240,13 @@ section:hover{
     background-color: #5aba64;
 }
 
-.home-email{
+.home-resume{
     font-size: 1vw;
     background-color: #428448;
     transition: background-color 0.5s;
 }
 
-.home-email:hover{
+.home-resume:hover{
     background-color: #509856;
 }
 
