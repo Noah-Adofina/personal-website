@@ -2,106 +2,152 @@
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
-   } 
+} 
 
-html{
-    background-color: #e2e9e3;
-    transition: background-color 1s;
-}
-
-html:hover{
-    background-color: #dbe4dc
-}
-
-p{
-    color: #28332A;
-}
-
-a{
-    text-decoration: none;
-}
-
-.header{
-    padding: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
-    background-color: #8ea692;
-    border-bottom: solid;
-    border-color: #28332A;
-    border-width: 2px;
-    transition: background-color 2s;
-}
-
-.header:hover{
-    background-color: #869f8a;
-}
-
-.introduction{
-    font-size: xx-large;
-}
-
-.introduction-first, .introduction-last{
-    color: #dbe4dc;
-    transition: color 1s;
-}
-
-.introduction-first:hover, .introduction-last:hover{
-    color: #4BD660;
-}
-
-.navbar{
+/* Set a global background for the whole page */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('images/water.gif') center center fixed;
+    background-size: cover;
+    height: 100vh; /* Full viewport height */
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
-
-.navbar-left{
+/* Container to hold both sections */
+.container {
     display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
-.navbar-link{
-    font-size: larger;
-    font-weight: bold;
-    margin-right: 75px;
+/* Left side of the page with image */
+.left-side {
+    width: 50%;
+    background-image: url('images/tall1.gif');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: 1;
+    z-index: 1;
 }
 
-.navbar-link a{
-    transition: border .1s;
-    color: #dbe4dc;
+/* Right side of the page with image */
+.right-side {
+    width: 50%;
+    background-image: url('images/tall1.gif');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+    z-index: 1;
 }
 
-.navbar-link a:hover{
-    border-bottom: solid;
-    border-width: 4px;
-    border-color: #dbe4dc;
+/* Center overlay content */
+.center-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center content vertically */
+    width: 100%;
 }
 
-.navbar-link-selected{
-    border-bottom: solid;
-    border-width: 4px;
-    border-color: #dbe4dc;
+.me {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-left: 15px;
+    position: relative;
+    z-index: 10;
 }
 
-.resume{
-    font-size: larger;
-    font-weight: bold;
-    color: #23642D;
-    border: solid;
-    border-color: #23642D;
-    border-width: 2px;
-    border-radius: 7px;
-    padding: 5px;
-    transition: background-color 1s, color 1s;
-    cursor: pointer;
+.gif-name {
+    width: 100vw;
+    height: 75px;
+    margin-top: -50px;
 }
 
-.resume:hover{
-    background-color: #23642D;
-    color: #869f8a;
+/* Styling for the image-container */
+.image-container {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Image and description styling */
+.image-one {
+    width: 350px;
+    margin-top: 25px;
+}
 
+.image-one-description {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Navbar and logo container */
+.navbar {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+/* Squares inside navbar */
+.square-1, .square-2, .square-3, .square-4, .square-5 {
+    width: 100px;
+    height: 100px;
+}
+
+.square-1 {
+    margin-top: 50px;
+}
+
+.square-2 {
+    margin-top: 25px;
+}
+
+.square-3 {
+    margin-top: 15px;
+}
+
+.square-4 {
+    margin-top: 35px;
+}
+
+.square-5 {
+    margin-top: 55px;
+}
+
+.logo-container {
+    text-align: start;
+    width: 100vw;
+}
+
+.contact{
+    width: 100px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 25px;
+}
