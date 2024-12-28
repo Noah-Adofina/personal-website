@@ -4,11 +4,12 @@
     box-sizing: border-box; 
 } 
 
+
 /* Set a global background for the whole page */
 body {
     margin: 0;
     padding: 0;
-    background: url('images/water.gif') center center fixed;
+    background: url('images/water3.gif') center center fixed;
     background-size: cover;
     height: 100vh; /* Full viewport height */
     display: flex;
@@ -27,28 +28,26 @@ body {
 /* Left side of the page with image */
 .left-side {
     width: 50%;
-    background-image: url('images/tall1.gif');
+    background-image: url('images/fish1.gif');
     background-size: cover;
     background-position: center;
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    opacity: 1;
     z-index: 1;
 }
 
 /* Right side of the page with image */
 .right-side {
     width: 50%;
-    background-image: url('images/tall1.gif');
+    background-image: url('images/fish2.gif');
     background-size: cover;
     background-position: center;
     position: fixed;
     top: 0;
     right: 0;
     height: 100%;
-    opacity: 1;
     z-index: 1;
 }
 
@@ -79,7 +78,7 @@ body {
 
 .gif-name {
     width: 100vw;
-    height: 75px;
+    height: 100px;
     margin-top: -50px;
 }
 
@@ -100,8 +99,15 @@ body {
 
 .image-one-description {
     color: white;
+    font-weight: bold;
+    font-size: large;
     text-align: center;
     margin-top: 10px;
+    text-shadow: 
+        -1px -1px 0 black,  /* Top-left shadow */
+        1px -1px 0 black,   /* Top-right shadow */
+        -1px 1px 0 black,   /* Bottom-left shadow */
+        1px 1px 0 black;    /* Bottom-right shadow */
 }
 
 /* Navbar and logo container */
@@ -115,10 +121,16 @@ body {
 }
 /* Squares inside navbar */
 .square-1, .square-2, .square-3, .square-4, .square-5 {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    transition: background-color 2s;
 }
 
+.square-1:hover, .square-2:hover, .square-3:hover, .square-4:hover, .square-5:hover {
+    background-color: rgba(62, 118, 98, 0.2);
+    cursor: pointer;
+}
 .square-1 {
     margin-top: 50px;
 }
@@ -144,10 +156,13 @@ body {
     width: 100vw;
 }
 
-.contact{
-    width: 100px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-right: 25px;
-}
+.contact {
+    width: 125px;
+    height: 100px;
+    position: absolute; /* Fix the button to the viewport */
+    bottom: 0;    /* Distance from the bottom of the viewport */
+    right: 0;     /* Distance from the right of the viewport */
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 50px;
+    }
