@@ -28,6 +28,7 @@ body {
 /* Left side of the page with image */
 .left-side {
     width: 50%;
+    background-image: url('images/fish1.gif');
     background-size: cover;
     background-position: center;
     position: fixed;
