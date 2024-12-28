@@ -1,0 +1,168 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+
+
+/* Set a global background for the whole page */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('images/water3.gif') center center fixed;
+    background-size: cover;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container to hold both sections */
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* Left side of the page with image */
+.left-side {
+    width: 50%;
+    background-image: url('images/fish1.gif');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Right side of the page with image */
+.right-side {
+    width: 50%;
+    background-image: url('images/fish2.gif');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Center overlay content */
+.center-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center content vertically */
+    width: 100%;
+}
+
+.me {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-top: 15px;
+    margin-left: 15px;
+    position: relative;
+    z-index: 10;
+}
+
+.gif-name {
+    width: 100vw;
+    height: 100px;
+    margin-top: -50px;
+}
+
+/* Styling for the image-container */
+.image-container {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image and description styling */
+.image-one {
+    width: 350px;
+    margin-top: 25px;
+}
+
+.image-one-description {
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow: 
+        -1px -1px 0 black,  /* Top-left shadow */
+        1px -1px 0 black,   /* Top-right shadow */
+        -1px 1px 0 black,   /* Bottom-left shadow */
+        1px 1px 0 black;    /* Bottom-right shadow */
+}
+
+/* Navbar and logo container */
+.navbar {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+/* Squares inside navbar */
+.square-1, .square-2, .square-3, .square-4, .square-5 {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    transition: background-color 2s;
+}
+
+.square-1:hover, .square-2:hover, .square-3:hover, .square-4:hover, .square-5:hover {
+    background-color: rgba(62, 118, 98, 0.2);
+    cursor: pointer;
+}
+.square-1 {
+    margin-top: 50px;
+}
+
+.square-2 {
+    margin-top: 25px;
+}
+
+.square-3 {
+    margin-top: 15px;
+}
+
+.square-4 {
+    margin-top: 35px;
+}
+
+.square-5 {
+    margin-top: 55px;
+}
+
+.logo-container {
+    text-align: start;
+    width: 100vw;
+}
+
+.contact {
+    width: 125px;
+    height: 100px;
+    position: absolute; /* Fix the button to the viewport */
+    bottom: 0;    /* Distance from the bottom of the viewport */
+    right: 0;     /* Distance from the right of the viewport */
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 50px;
+    }
