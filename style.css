@@ -4,6 +4,9 @@
     box-sizing: border-box; 
 } 
 
+html, body{
+    overflow-x: hidden;
+}
 
 /* Set a global background for the whole page */
 body {
@@ -162,7 +165,66 @@ body {
     position: absolute; /* Fix the button to the viewport */
     bottom: 0;    /* Distance from the bottom of the viewport */
     right: 0;     /* Distance from the right of the viewport */
-    padding: 0 15px;
+    padding: 0 15px 0 15px;
+    margin-bottom: -150px;
     cursor: pointer;
     border-radius: 50px;
+}
+
+@media screen and (max-width: 1440px) {
+    .navbar{
+        margin: 0;
+        width: 90%
     }
+
+    .square-1, .square-2, .square-3, .square-4, .square-5{
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .image-container{
+        width: 75%;
+    }
+
+    .container{
+        display: block;
+    }
+
+    .left-side{
+        width: 100%;
+    }
+    
+    .right-side{
+        width: 100%
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .square-1, .square-2, .square-3, .square-4, .square-5{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .me{
+        width: 75px;
+        height: 75px;
+    }
+
+    .square-1, .square-2, .square-3, .square-4, .square-5{
+        width: 50px;
+        height: 50px;
+    }
+
+    .image-one{
+        width: 200px;
+    }
+
+    .image-one-description{
+        font-size: medium;
+    }
+}
