@@ -66,7 +66,6 @@ body {
     align-items: center; /* Center the content horizontally */
     justify-content: center; /* Center content vertically */
     width: 100%;
-    pointer-events: none;
 }
 
 .me {
