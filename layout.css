@@ -150,6 +150,7 @@ body {
     border-radius: 50px;
 }
 
+
 @media screen and (max-width: 1440px) {
     .navbar{
         margin: 0;
