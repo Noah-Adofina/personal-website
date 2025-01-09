@@ -1,0 +1,62 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    gap: 16px; /* Optional: Adds space between grid items */
+    margin: 0 75px 50px 75px;
+}
+
+.grid-item{
+    width: 25vw;
+}
+
+.item-link{
+    text-decoration: none;
+    font-family: "Noto Sans JP", serif;
+    color: #a5d713;
+    text-shadow: 0 0 4px black;
+}
+
+.item-title{
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.item-image{
+    width: 100%;
+    border: 5px solid #506d27;
+}
+
+@media screen and (max-width: 1440px) {
+    
+}
+
+@media screen and (max-width: 1024px) {
+    .item-title{
+        font-size: 1.5em;
+    }
+    .grid-container{
+        margin: 0;
+    }
+    
+}
+
+
+@media screen and (max-width: 768px) {
+    .item-title{
+        font-size: 1em;
+    }
+
+    .item-image{
+        border: 3px solid #506d27;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .item-title{
+        font-size: .55em;
+    }
+
+    .item-image{
+        border: 1px solid #506d27;
+    }
+}
