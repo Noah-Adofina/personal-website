@@ -1,0 +1,63 @@
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #98B4A6; 
+}
+
+.footer-social-media, .footer-contact{
+    width: 25vw;
+}
+
+.footer-social-media{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer-about{
+    width: 50vw;
+    text-align: center;
+    padding: 10px 5vw 0 5vw;
+    margin-bottom: 10px;
+    font-family: "Alata", sans-serif;
+}
+
+.footer-contact{
+    padding-top: 10px;
+    text-align: center;
+    font-family: "Alata", sans-serif;
+}
+
+.instagram-image, .twitter-image, .tiktok-image, .youtube-image{
+    width: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center the content horizontally */
+    }
+
+    .footer-about {
+        order: 1; /* Ensures the about section is the first element */
+        width: 100%; /* Make the description span the full width */
+        text-align: center;
+    }
+
+    .footer-social-media {
+        order: 3; /* Ensures the social media icons come next */
+        width: 100%; /* Make each section span the full width */
+        display: flex;
+        justify-content: space-evenly; /* Align icons on the left */
+        align-items: center;
+        margin-bottom: 10px; /* Add spacing between rows */
+    }
+
+    .footer-contact {
+        order: 2; /* Ensures the contact info comes last */
+        width: 50%; /* Make each section span the full width */
+        margin-bottom: 20px; /* Add spacing between rows */
+        margin-top: -10px;
+    }
+}

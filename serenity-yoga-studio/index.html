@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Serenity Yoga Studio</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./header.css">
+    <link rel="stylesheet" href="./footer.css">
+    <link rel="stylesheet" href="./menu.css">
+    <link rel="stylesheet" href="./return.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Baskervville&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <a href="/index.html"><div class="return-button"><p>Back to Original</p></div></a>
+    <div class="menu-background" id="menu">
+      <div class="close-button-container">
+        <button class="menu-close-button" onclick="closeMenu()">X</button>
+      </div>
+      <a href="index.html" class="navigation-link"><div class="navigation-container">HOME</div></a>
+      <a href="about.html" class="navigation-link"><div class="navigation-container">ABOUT</div></a>
+      <a href="classes.html" class="navigation-link"><div class="navigation-container">CLASSES</div></a>
+      <a href="schedule.html" class="navigation-link"><div class="navigation-container">SCHEDULE</div></a>
+      <a href="contact.html" class="navigation-link"><div class="navigation-container">CONTACT</div></a>
+    </div>
+    <div class="header">
+      <a href="index.html" class="logo">Serenity Yoga Studio</a>
+      <button class="menu-button" onclick="showMenu()"><img src="images/menu-burger.png" alt="Noah Adofina" class="menu-icon"/></button>
+      <div class="navbar" id="navbar">
+        <a href="index.html" class="navlink">HOME</a><span class=navlink-divider></span>
+        <a href="about.html" class="navlink">ABOUT</a><span class=navlink-divider></span>
+        <a href="classes.html" class="navlink">CLASSES</a><span class=navlink-divider></span>
+        <a href="schedule.html" class="navlink">SCHEDULE</a><span class=navlink-divider></span>
+        <a href="contact.html" class="navlink">CONTACT</a>
+      </div>
+    </div>
+    <div class="hero-section">
+      <h1 class="hero-tagline"><span class="hero-tagline-highlight">Find</span><span class="hero-tagline-highlight"> Your</span><span class="hero-tagline-highlight"> Balance</span><span class="hero-tagline-highlight"> at</span><span class="hero-tagline-highlight"> Serenity</span><span class="hero-tagline-highlight"> Yoga</span><span class="hero-tagline-highlight"> Studio</span></h1>
+      <p class="hero-description">Serenity Yoga Studio is a small, local yoga studio focused on creating a peaceful and welcoming space for people of all skill levels.</p>
+      <a href="schedule.html"><button class="hero-CTA">Book a Class</button></a>
+    </div>
+    <div class="footer">
+      <div class="footer-social-media">
+        <a class="instagram-link" href="https://www.instagram.com/"><img src="images/instagram.png" class="instagram-image"/></a>
+        <a class="twitter-link" href="https://x.com/?lang=en"><img src="images/twitter.png" class="twitter-image"/></a>
+        <a class="tiktok-link" href="https://www.tiktok.com/"><img src="images/tik-tok.png" class="tiktok-image"/></a>
+        <a class="youtube-link" href="https://www.youtube.com/"><img src="images/youtube.png" class="youtube-image"/></a>
+      </div>
+      <div class="footer-about">Serenity Yoga Studio is a small, local yoga studio focused on creating a peaceful and welcoming space for people of all skill levels. The studio offers group yoga classes, private sessions, and wellness workshops. Their mission is to inspire mindfulness, health, and relaxation through the art of yoga.</div>
+      <div class="footer-contact">
+        <a href="mailto:support@serenityyogastudio.com"><p class="contact-email">support@serenityyogastudio.com</p></a>
+        <p class="contact-address">123 Main Street, Anytown, CA 12345</p>
+        <p class="contact-phone">(555) 555-5555</p>
+      </div>
+    </div>
+    <script src="script-menu.js"></script>
+  </body>
+</html>

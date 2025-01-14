@@ -1,0 +1,68 @@
+.calendar-container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Alata", sans-serif;
+}
+  
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f4e3d7;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid #98B4A6;
+    border-radius: 15px 15px 0 0;
+}
+  
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 650px;
+    gap: 10px;
+    border-left: 1px solid #98B4A6;
+    border-right: 1px solid #98B4A6;
+}
+
+.class-time{
+    padding: 10px;
+    background-color: #98B4A6;
+    border-radius: 15px;
+    margin: 5px;
+    border: 1px solid #98B4A6;
+    color: rgb(104, 104, 104);
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.class-time[data-instructor="Dominic"]{
+    background-color: rgb(196, 234, 236);
+}
+
+.class-time[data-instructor="Kennith"]{
+    background-color: rgb(196, 236, 197);
+}
+
+.class-time[data-instructor="Crystal"]{
+    background-color: rgb(215, 196, 236);
+}
+
+.class-time[data-instructor="Kami"]{
+    background-color: rgb(236, 196, 211);
+}
+
+.class-time[data-instructor="Daniel"]{
+    background-color: rgb(227, 236, 196);
+}
+
+.class-time[data-instructor="Jillian"]{
+    background-color: rgb(236, 213, 196);
+}
+
+.class-time[data-instructor="Jefferey"]{
+    background-color: rgb(196, 199, 236);
+}
+
+.class-time[data-instructor="Raul"]{
+    background-color: rgb(236, 196, 196);
+}

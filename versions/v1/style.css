@@ -59,12 +59,9 @@ img{
     background-color: #eeeeee;
     width: 75px;
     height: 75px;
-    z-index: 1;
-}
-
-.return-button p{
-    position: flex;
-    justify-content: center;
+    z-index: 2;
+    display: flex;
+    align-items: center;
     text-align: center;
 }
 

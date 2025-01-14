@@ -1,0 +1,161 @@
+.class-section, .class-section-2{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px;
+    height: 70vh;
+}
+
+.class-section{
+    background-color: #E6E6FA;
+    box-shadow: 0 5px 15px #E6E6FA,
+        0 -5px 15px #E6E6FA;
+}
+
+.class-image{
+    width: 50%;
+    border: solid 4px #98B4A6;
+    box-shadow: -2px 2px 4px black;
+}
+
+.class-left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.class-right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.class-title, .class-title-2{
+    color: white;
+    font-size: 2rem;
+    font-family: "Alata", sans-serif;
+}
+
+.class-title{
+    text-shadow: 1px 0 2px white, 
+        -1px 0 2px white, 
+        0 1px 2px white, 
+        0 -1px 2px white;
+}
+
+.class-title-2{
+    text-shadow: 2px 0 2px #cacae3, 
+        -2px 0 2px #cacae3, 
+        0 2px 2px #cacae3, 
+        0 -2px 2px #cacae3;
+}
+
+.bullets-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.bullets-left, .bullets-right{
+    margin: 50px 50px 20px 0;
+}
+
+.bullet, .bullet-2{
+    color: white;
+    text-shadow: 0 0 3px white;
+    margin-bottom: 25px;
+    font-size: 1.25rem;
+    font-family: "Alata", sans-serif;
+}
+
+.bullet-2{
+    text-shadow: 2px 0 2px #cacae3, 
+        -2px 0 2px #cacae3, 
+        0 2px 2px #cacae3, 
+        0 -2px 2px #cacae3;
+}
+.bullet-2::before {
+    content: "●"; /* Inserts a bullet */
+    color: white; /* Bullet color */
+    text-shadow: 2px 0 2px #cacae3, 
+        -2px 0 2px #cacae3, 
+        0 2px 2px #cacae3, 
+        0 -2px 2px #cacae3; /* Creates an outlined effect */
+    margin-right: 10px; /* Space between bullet and text */
+}
+
+ul{
+    list-style-type: none; /* Removes default bullet */
+}
+
+li::before {
+    content: "●"; /* Inserts a bullet */
+    color: white; /* Bullet color */
+    text-shadow: 0 0 3px white; /* Creates an outlined effect */
+    margin-right: 10px; /* Space between bullet and text */
+}
+
+.class-price, .class-price-2{
+    font-size: 1.25rem;
+    font-family: "Alata", sans-serif;
+    color: white;
+    text-shadow: 0 0 3px white;
+    margin-bottom: 15px;
+}
+
+.class-price-2{
+    text-shadow: 2px 0 2px #cacae3, 
+        -2px 0 2px #cacae3, 
+        0 2px 2px #cacae3, 
+        0 -2px 2px #cacae3;
+}
+
+.class-CTA{
+    background-color: #F4E3D7;
+    border-color: white;
+    border-radius: 15px;
+    padding: 10px 50px 10px 50px;
+    color: white;
+    font-family: "Alata", sans-serif;
+    text-shadow: 0 0 3px black;
+    font-size: 1.25rem;
+    transition: background-color 0.5s;
+}
+
+.class-CTA:hover{
+    background-color: #ffefe5;
+}
+
+@media screen and (max-width: 768px) {
+    .class-section, .class-section-2{
+        flex-direction: column;
+        height: 120vh;
+    }
+
+    .class-image{
+        width: 60vw;
+    }
+
+    .class-left, .class-right{
+        width: 100%;
+    }
+
+    .class-title, .class-title-2{
+        font-size: 1.25em;
+        margin-top: 25px;
+        margin-bottom: 0;
+    }
+
+    .bullet, .bullet-2{
+        font-size: 1em;
+    }
+
+    .bullets-left, .bullets-right{
+        margin: 5px;
+    }
+}
