@@ -46,12 +46,12 @@
 }
 
 .tech-stack{
-    height: 75px;
+    height: 50px;
 }
 
 .tech-stack-logo{
-    height: 75px;
-    width: 75px;
+    height: 50px;
+    width: 50px;
 }
 
 @media screen and (max-width: 1440px) {
@@ -80,7 +80,7 @@
     }
 
     .tech-stack-logo{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 }
