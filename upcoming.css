@@ -78,4 +78,9 @@
     .item-description{
         font-size: small;
     }
+
+    .tech-stack-logo{
+        width: 40px;
+        height: 40px;
+    }
 }
