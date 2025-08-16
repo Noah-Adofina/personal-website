@@ -7,7 +7,8 @@
 html, body{
   max-width: 100vw;
   max-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -85,6 +86,7 @@ body::before {
 
 nav{
   flex: 1;
+  z-index: 999;
 }
 
 .hamburger{
@@ -486,6 +488,14 @@ nav{
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
 
+  /* Fallback for older iOS that doesn't support masks well */
+  @supports not (-webkit-mask-image: linear-gradient(transparent, black)) {
+    background: linear-gradient(to bottom, 
+      rgba(196, 196, 196, 0) 0%, 
+      rgba(196, 196, 196, 0.1) 20%, 
+      rgba(196, 196, 196, 0.1) 80%, 
+      rgba(196, 196, 196, 0) 100%);
+  }
 
   /*
   mask-image: var(--opaque-gradient);

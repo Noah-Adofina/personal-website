@@ -11,6 +11,23 @@ function isMobileDevice() {
   return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+// Check for specific iOS version or iPhone model
+function isOlderIOS() {
+  const userAgent = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(userAgent);
+  
+  if (!isIOS) return false;
+  
+  // Check for iOS version (iPhone 12 typically runs iOS 14-16)
+  const match = userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+  if (match) {
+    const majorVersion = parseInt(match[1]);
+    return majorVersion <= 16; // iPhone 12 era
+  }
+  
+  return false;
+}
+
 
 let isAnimating = !isMobileDevice();
 
@@ -132,12 +149,16 @@ let timeline = document.getElementById('timeline');
 let scrollDirection = 1; // 1 = down, -1 = up
 let autoScroll = true;
 let isPaused = false; // Track if we're currently paused
-let scrollDelay = 5000; // 7 seconds pause
+let scrollDelay = 5000; // 5 seconds pause
 
-let scrollInterval = setInterval(() => {
+// Adjust scroll interval for older iOS devices
+const scrollInterval = isOlderIOS() ? 20 : 5; // Slower for older iOS
+const scrollStep = isOlderIOS() ? 2 : 1; // Larger steps for older iOS
+
+let scrollIntervalId = setInterval(() => {
   if (!autoScroll || isPaused) return;
 
-  timeline.scrollTop += scrollDirection * 1; // smaller step for smoother scroll
+  timeline.scrollTop += scrollDirection * scrollStep; // adjusted step for smoother scroll
 
   const atTop = timeline.scrollTop <= 0;
   const atBottom = timeline.scrollTop + timeline.clientHeight >= timeline.scrollHeight;
@@ -151,7 +172,7 @@ let scrollInterval = setInterval(() => {
       isPaused = false;
     }, scrollDelay);
   }
-}, 5);
+}, scrollInterval);
 
 
 // Stop auto scroll on user input and restart after delay
@@ -165,5 +186,25 @@ function userScrolledHandler() {
   }, scrollDelay);
 }
 
+// Enhanced touch handling for older iOS
+function touchStartHandler() {
+  autoScroll = false;
+}
+
+function touchEndHandler() {
+  clearTimeout(userScrollTimeout);
+  userScrollTimeout = setTimeout(() => {
+    autoScroll = true;
+  }, scrollDelay);
+}
+
 timeline.addEventListener('wheel', userScrolledHandler);
-timeline.addEventListener('touchmove', userScrolledHandler);
+
+// Use different event handling for older iOS
+if (isOlderIOS()) {
+  timeline.addEventListener('touchstart', touchStartHandler, { passive: true });
+  timeline.addEventListener('touchend', touchEndHandler, { passive: true });
+  timeline.addEventListener('touchcancel', touchEndHandler, { passive: true });
+} else {
+  timeline.addEventListener('touchmove', userScrolledHandler, { passive: true });
+}
