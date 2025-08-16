@@ -1,0 +1,196 @@
+[
+    {
+        "title" : "Inventory Tracker",
+        "stack" : [
+            "React",
+            "Tailwind",
+            "Firebase"
+        ],
+        "link-types" : [
+            "Github",
+            "Preview"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/inventory-tracker",
+            "https://www.youtube.com/watch?v=6z0m79pZjJs"
+        ],
+        "images" : [
+            "./images/inventory-tracker.JPG"
+        ],
+        "objective" : "<p>This was a project during my fellowship at Headstarter AI. We were tasked with creating a webapp that integrates a Firebase database to create, read, update, and delete data.</p>",
+        "implementation" : "<p>The webapp itself was built with Next.js and styled with Tailwind CSS. It was coded with javascript and utilized Firebase's firestore database. There was an API endpoint to connect with the database.</p>",
+        "results" : "<p>The end product was a webapp where you could add items to a list, edit the quantity, fetch the list on load, and delete items from the list. All of the information was stored in a database with Firebase.</p>",
+        "challenges" : "<p>A lot of what I did during my fellowship at Headstarter was new to me so learning how to code with an API was definetly a new experience. This was the first of many that I worked with and it took me a while to figure out.</p>",
+        "takeaways" : "<p>I believe this was my first time utilizing not only Firebase, but also Next.js and an API in general. I had never touched these things and was able to learn a lot and expand my toolbox. Furthermore, I learned how styling could be sped up using a framework like Tailwind CSS.</p>"
+    },
+    {
+        "title" : "AI Chat Support Bot",
+        "stack" : [
+            "React",
+            "Tailwind",
+            "OpenAI"
+        ],
+        "link-types" : [
+            "Github",
+            "Preview"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/chat-support",
+            "https://www.youtube.com/watch?v=jhW8qqaSUR8"
+        ],
+        "images" : [
+            "./images/ai-chatbot.JPG"
+        ],
+        "objective" : "<p>This was another project during my fellowship with Headstarter AI. We were tasked to create a personalized chat support bot that called OpenAI's API.</p>",
+        "implementation" : "<p>The basic webapp was built using Next.js and styled with Tailwind CSS. The core functionality was starting with a system prompt to give the AI a role and company. Then it used a chat system to recieve messages from the user and route through OpenAI's API. It then returned a streamed responese that was based upon the original system prompt, making it tailored to being a Headstarter chat support bot.</p>",
+        "results" : "<p>The finished project was a chatbox where the AI introduced itself as a support assistant working for Headstarter AI. It greeted the user and offered to help and provide information to any inquires the user had. It had a streamed response so you didn't have to wait for the entire response to be generated but could instead receive it word by word as it was responding.</p>",
+        "challenges" : "<p>This project didn't give me too many challenges, but it did take some time to understand how to use the API from OpenAI. You had to make sure to format everything correctly and keep track of all of the messages.</p>",
+        "takeaways" : "<p>This project gave me the confidence to actually work more with AI. It also expanded upon working with 3rd party API's for my own projects. It introduced me to the backend of text generation and various concepts like tokens and text streaming.</p>"
+    },
+    {
+        "title" : "AI Flashcard SaaS",
+        "stack" : [
+            "React",
+            "Tailwind",
+            "OpenAI",
+            "Firebase",
+            "Clerk",
+            "Stripe"
+        ],
+        "link-types" : [
+            "Github",
+            "Preview",
+            "Launch"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/flashcard-saas",
+            "https://www.youtube.com/watch?v=bQ0YuZyFp4A",
+            "https://flashcard-saas-ecru.vercel.app/"
+        ],
+        "images" : [
+            "./images/ai-flashcard-saas.JPG"
+        ],
+        "objective" : "<p>This was another project during my fellowship at Headstarter AI. The opportunity was to create a Software as a Service webapp that used AI text generation to generate a flashcard set for any topic the user specified. It also incorporated an account system to allow users to create accounts and login, as well as keep their data separate from any other users.</p>",
+        "implementation" : "<p>For this project, I started with a webapp built with Next.js. I had a lot I had to learn to make the entire end product work. For authentication, I used a 3rd party system called Clerk. It allowed accounts to be created and gave an id to be tied with the various account information that was stored inside a Firebase database. For flashcard generation, I used OpenAI's API to generate a set of 10 flashcards based on an inputted topic. I made sure to have it export as a JSON file that was structured in a specific way to automatically display them with code. I started setting up a payment system with Stripe to allow for higher tier accounts for more generation and flashcard set storage. Finally, I deployed the project using Vercel, to allow users to actually try the project out for themselves.</p>",
+        "results" : "<p>The end product was a basic flashcard webapp where users could sign up for an account using a basic email and password or even directly with a Google account. You were then able to navigate the website to a generation page to generate sets of flashcards based on any topic. Flashcards were stored with a Firebase database and all of the user's sets were stored and listed for access. You could then study with them as you wished. There was a test payment setup with Stripe but I never got around to setting up actual restrictions and payments. This entire project was deployed on Vercel with a live link to try it out.</p>",
+        "challenges" : "<p>It was difficult to learn all of these technologies so quickly. Each project was given a one week deadline which made me have to learn quickly. Stripe had a very specific format to request a payment and I remember that taking a while to figure out.</p>",
+        "takeaways" : "<p>Even though a lot of this was new to me I felt like I learned a lot. The first week of the fellowship was the first time I had ever looked at the languages HTML, CSS, and JS. Moving forward to this week I was proud that I was able to build a mostly working webapp that could be monetized with future improvements.</p>"
+    },
+    {
+        "title" : "Rate My Professor RAG App",
+        "stack" : [
+            "React",
+            "Tailwind",
+            "OpenAI",
+            "Pinecone"
+        ],
+        "link-types" : [
+            "Github",
+            "Preview"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/flashcard-saas",
+            "https://www.youtube.com/watch?v=08Ij0BtF71c"
+        ],
+        "images" : [
+            "./images/ai-rag.JPG"
+        ],
+        "objective" : "<p>For this Headstarter project we were tasked with building a chat app that used a Retrieval-Augmented Generation system. It was building upon the AI chat support bot where this one would retrieve information from a database that stored real data from RateMyProfessor.</p>",
+        "implementation" : "<p>The core of the app was similar to the AI chat support bot. Built with Next.js, it used OpenAI's API again for text generation and realistic conversation. What was new was the use of Pinecone, a technology used as a vector database. I am still new to the concepts but if I understand correctly the RMP data was translated into vectors which allowed the system to understand and interperate the data for navigating.</p>",
+        "results" : "<p>The end result was a chat app where you could ask about details or other things about the professors or ratings and receive information based on your input. The main response was a list of the top 3 entries that matched your input that provided you with the professor's name, rating, subject, and more info.</p>",
+        "challenges" : "<p>The hardest thing was trying to understand how Pinecone worked. I had never heard of vectors before, and didn't understand how translating data to different forms allowed the system to process it better.</p>",
+        "takeaways" : "<p>This project introduced me to data manipulation and the way AI can interpret it after processing.</p>"
+    },
+    {
+        "title" : "Pong! Recreation",
+        "stack" : [
+            "C#",
+            "Unity"
+        ],
+        "link-types" : [
+            "Github"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/Pong_First_Game"
+        ],
+        "images" : [
+            "./images/pong.gif"
+        ],
+        "objective" : "<p>This was a project I completed when teaching myself how to code using various online sources. C# was the first language I learned and I was learning so I could become a game developer. The objective of this project was to code my first real project and see if I could get a working playable game.</p>",
+        "implementation" : "<p>I researched different game engines and decided that Unity was the one for me. I took some time getting used to its interface and systems and eventually began working on the project. It built upon the knowledge I gained of coding with C# for scripts. I used assets that I made in Photoshop with prior experience from a graphic design class I took in high school.</p>",
+        "results" : "<p>The finished project was a playable Pong game where two people could play as long as they were on the same keyboard and system. The game randomly deployed the ball in a chosen direction so there was no bias. Each player had a score that was tracked for every goal they scored. It had sound effects that played whenever the ball bounced and different scenes for the title screen and actual gameplay.</p>",
+        "challenges" : "<p>I thought I had completed the project without running into any real problems, until I sent my younger brother a build of the game. When we opened it on his computer the UI was completely cut off and the game was unplayable since you couldn't even start the game. This is the first time I realized that there were certain aspects where you had to design it to work on different systems and screen resolutions.</p>",
+        "takeaways" : "<p>I learned that I could actually create real applications with just some code and tools. I learned about how what I see on my end developing the project, may not be what the final user sees on their system.</p>"
+    },
+    {
+        "title" : "Serenity Yoga Studio",
+        "stack" : [
+            "HTML",
+            "CSS",
+            "JS",
+            "Figma"
+        ],
+        "link-types" : [
+            "Github",
+            "Demo"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/Serenity-Yoga-Studio",
+            "https://www.noahadofina.com/serenity-yoga-studio/index.html"
+        ],
+        "images" : [
+            "./images/serenity-yoga-studio.JPG",
+            "./images/serenity-yoga-studio-2.JPG",
+            "./images/serenity-yoga-studio-3.JPG",
+            "./images/serenity-yoga-studio-4.JPG",
+            "./images/serenity-yoga-studio-5.JPG"
+        ],
+        "objective" : "<p>After completing my time with Headstarter for my fellowship, I felt like I wasn't understanding everything as much as I wanted to. This project was an attempt to better understand the core languages HTML, CSS and JS. I used ChatGPT to generate me a mock customer request for a website, providing me with a company name, field, colors, and special requests.</p>",
+        "implementation" : "<p>I used Figma to create a wirefarm of each page. After creating the template, I recreated it with actual HTML and CSS, then styled it further and added javascript for some areas for functionality.</p>",
+        "results" : "<p>The finished product was a basic website that followed the customer's requests, palette, and style.</p>",
+        "challenges" : "<p>Since I was still new to these basic languages, I had to use a lot of external resources to understand what I was doing and how to accomplish what I wanted to.</p>",
+        "takeaways" : "<p>Completing this project taught me a lot of the syntax for these languages. It also helped me practice my design skills with Figma, and with recreating my design in actual HTML and CSS.</p>"
+    },
+    {
+        "title" : "Comfy Cafe!!",
+        "stack" : [
+            "Godot",
+            "GDScript"
+        ],
+        "link-types" : [
+            "Github"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/coffee-game"
+        ],
+        "images" : [
+            "./images/coffee-1.gif",
+            "./images/coffee-2.gif"
+        ],
+        "objective" : "<p>After completing my first Pong game, I was still interested in game design. There was some drama going on with Unity and I decided to switch game engines to Godot. This project was an attempt to create my first game that I would release publically and try to monetize, as well as learn fundumentals and Godot.</p>",
+        "implementation" : "<p>I started with listing out all of the features I wanted the game to have. I had a vision in my mind about the style being a cozy game that could be played on all of the major platforms including PC, mobile, and console. I researched best practices and created placeholder art as I worked on the game. I focused on functionality and making sure the gameplay worked.</p>",
+        "results" : "<p>The harsh reality was that I never finished this game. In fact, this was not the first big game I attempted. This was just the one that I made the most progress on. Being a new programmer trying to develop a bigger professional game, my code eventually got messy. I didn't have the experience to clean it up as much as I wished to. With more challenges arising, I slowly stopped working on the game and moved on to different opportunities such as Headstarter, AI, and web development.</p>",
+        "challenges" : "<p>Being a new developer trying to create a bigger game, I had a lot I was expecting to do. I never properly planned out the project, aside from a text file listing the features and structure of the game. I didn't break down the problems into managable sizes. My ambition worked against me by leading me to come up with new ideas and things to add to the game, before finshing core systems and existing features. Even though I never finished the game, I saw a lot of progress and potential.</p>",
+        "takeaways" : "<p>This game taught me how important strong foundations are. I worked on learning the basics better when I eventually moved on to web development and AI. I saw that I was capable of creating, but just needed work on my focus and planning. This game gave me the confidence to apply to the Headstarter fellowship that led to me learning so much more about software engineering.</p>"
+    },
+    {
+        "title" : "Custom Discord Notification Sound",
+        "stack" : [
+            "HTML",
+            "CSS",
+            "JS"
+        ],
+        "link-types" : [
+        ],
+        "links" : [
+        ],
+        "images" : [
+            "./images/discord-notification.JPG"
+        ],
+        "objective" : "<p>After using Discord for a while their native notification sound was getting very old. I thought they would add a way to customize it but that feature never came. I finally realized I could use my coding skills to create a script to override their notification sound so that is what I set out to do.</p>",
+        "implementation" : "<p>I wasn't too familiar with how Discord's internal system worked and didn't know where to start, so I did what I could and had an interesting conversation with ChatGPT. Through talking with it I was able to understand different ways a webapp could implement a notification sound. I then used that information to work out a way to override it through trial and error. I initally tried to override the sound, then moved onto trying to redirect the sound file fetch. There were a couple other things I tried but the only way I was able to get it to work was by figuring out a way to mute the default notification and trigger a custom audio by watching discord's notification visually.</p>",
+        "results" : "<p>After a long time and many different scripts and approaches, I finally got it to work. I was able to figure out a way to use any sound clip I want and even coded in a UI slider to adjust the volume of the sound.</p>",
+        "challenges" : "<p>The biggest obstacle I had was working against Discord's internal system. They had many measures to prevent you from changing the sound or muting it directly. Furthermore, it took a while because I was working without knowing what exact way the notification and audio worked.</p>",
+        "takeaways" : "<p>This little personal project of mine gave me a lot of knowledge on how audio systems work within the browser and javascript. It also opened me up to collaboration even if it was only with an AI. I practiced trial and error and problem solving.</p>"
+    }
+]

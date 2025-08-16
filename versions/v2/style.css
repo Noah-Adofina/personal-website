@@ -1,0 +1,54 @@
+/* Styling for the image-container */
+.image-container {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image and description styling */
+.image-one {
+    width: 350px;
+    margin-top: 25px;
+}
+
+.image-one-description {
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow: 
+        -1px -1px 0 black,  /* Top-left shadow */
+        1px -1px 0 black,   /* Top-right shadow */
+        -1px 1px 0 black,   /* Bottom-left shadow */
+        1px 1px 0 black;    /* Bottom-right shadow */
+    margin-bottom: 100px;
+}
+
+
+@media screen and (max-width: 1440px) {
+    
+}
+
+@media screen and (max-width: 1024px) {
+    .image-container{
+        width: 75%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 500px) {
+    .image-one{
+        width: 200px;
+    }
+
+    .image-one-description{
+        font-size: medium;
+    }
+}

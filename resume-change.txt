@@ -1,0 +1,4 @@
+resume.html
+    ln47 src to png in ./images
+    ln49 link to png in drive
+    ln50 href to pdf file
