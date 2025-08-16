@@ -1039,6 +1039,7 @@
       flex-direction: column;
       width: auto;
       flex-shrink: 0;
+      justify-content: space-between;
     }
 
     .preview__info__tabs button{
