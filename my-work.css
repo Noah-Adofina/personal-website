@@ -442,6 +442,11 @@
     background-size: cover;
   }
 
+  .project__header.mnist::before{
+    background: url("images/noahs-number-predictor-2.JPG");
+    background-size: cover;
+  }
+
   .project__header.pong::before{
     background: url("images/pong.gif");
     background-size: cover;

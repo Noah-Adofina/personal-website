@@ -102,6 +102,42 @@
         "takeaways" : "<p>This project introduced me to data manipulation and the way AI can interpret it after processing.</p>"
     },
     {
+        "title" : "Noah's Number Predictor",
+        "stack" : [
+            "HTML",
+            "CSS",
+            "JS",
+            "Python",
+            "NumPy",
+            "Pandas",
+            "MatPlotLib",
+            "PyTorch",
+            "Render",
+            "Vercel"
+        ],
+        "link-types" : [
+            "Github",
+            "Model Github",
+            "Launch"
+        ],
+        "links" : [
+            "https://github.com/Noah-Adofina/noahs-number-predictor--MNIST-NN",
+            "https://github.com/Noah-Adofina/MNIST-NN",
+            "https://noahs-number-predictor-mnist-nn.vercel.app/"
+        ],
+        "images" : [
+            "./images/noahs-number-predictor-2.JPG",
+            "./images/noahs-number-predictor.JPG",
+            "./images/noahs-number-predictor-3.JPG",
+            "./images/mnist-training-chart.png"
+        ],
+        "objective" : "<p>I spent some time learning the basics of how a neural network works, along with how to train a model and produce results. For this project, I wanted to practice what I learned with a real project. It was just the beginning of my journey in machine learning so I decided to try a very very basic neural network project that would predict hand-drawn numbers.</p>",
+        "implementation" : "<p>I decided to use PyTorch to help build and train the model since I wasn't at a point where I could do it from scratch. I just wanted to get a better understand of how it all worked before going into more detail. I used the MNIST digit dataset to train and test my model. I trained with 5 epochs and was able to bring the loss down dramatically. This resulted in a 92% accuracy when running through the test set. I used MatPlotLib to plot the model's loss over each epoch and test run. I then exported the model and built a simple webapp to allow users to draw their own number and run it through my neural network and see what it's guess is. The end result is the website shown in the pictures provided.</p>",
+        "results" : "<p>The finished product is something I am proud of for less than a week's worth of work! I was able to create a functional neural network and a webapp to allow users to interact with it. It has an okay accuracy but not as good as I would like for a professional project. There are some flaws that I have noticed: the webapp has an offset when drawing on mobile, the model is inaccurate with simple numbers, the model is inaccurate when the number is not drawn bold and centered taking up most of the space. But in the end, it does work with the right conditions.</p>",
+        "challenges" : "<p>I struggled to understand some of the concepts with neural networks. I know I still have a lot to learn, which is why as I am writing this am currently diving deeper into the core concepts, algorithms, and formulas behind neural networks and machine learning in general. The biggest obstacles were learning all of the tools used such as NumPy, Pandas, PyTorch, and Render (for deploying the backend) in such a small amount of time. I was driven by my interest and curiousity that helped me get through it all.</p>",
+        "takeaways" : "<p>With this project, I was able to learn more about how a neural network works. I learned how they are generally structured, as well as tools I can use to create them in a simpler way. This also taught me data analysis with NumPy and Pandas, and data visualization with MatPlotLib. Furthermore, this project has opened me up to the world of machine learning, which I am now starting to explore more.</p>"
+    },
+    {
         "title" : "Pong! Recreation",
         "stack" : [
             "C#",
