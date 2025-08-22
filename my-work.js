@@ -203,8 +203,9 @@ function setProjectData(projectTitle){
     // Add li class
     linkListEl.classList.add("preview__link");
 
-    // Set a href and text
+    // Set a href, target, and text
     linkEl.href = link;
+    linkEl.setAttribute('target', '_blank'); 
     linkEl.textContent = "[" + selectedProjectData["link-types"][index] + "]";
 
     // Append a to li
