@@ -60,7 +60,7 @@ export const portfolioProjects: PortfolioProject[] = [
     images: [{ src: '/projects/inventory-tracker.webp', full: '/projects/full/inventory-tracker.JPG', alt: 'Inventory Tracker interface listing items and quantities.', caption: 'Inventory Tracker interface' }],
     links: [
       { label: 'View repository', href: 'https://github.com/Noah-Adofina/inventory-tracker', external: true },
-      { label: 'Watch preview', href: 'https://www.youtube.com/watch?v=6z0m79pZjJs', external: true },
+      { label: 'Watch preview', href: 'https://youtu.be/EdgJT-OxKI8?si=tTDds3hgnPj-ahSu', external: true },
     ],
   },
   {
@@ -71,7 +71,7 @@ export const portfolioProjects: PortfolioProject[] = [
     images: [{ src: '/projects/ai-flashcards.webp', full: '/projects/full/ai-flashcard-saas.JPG', alt: 'AI Flashcard SaaS landing page with sign-in and sign-up links.', caption: 'AI Flashcard SaaS landing page' }],
     links: [
       { label: 'View repository', href: 'https://github.com/Noah-Adofina/flashcard-saas', external: true },
-      { label: 'Watch preview', href: 'https://www.youtube.com/watch?v=bQ0YuZyFp4A', external: true },
+      { label: 'Watch preview', href: 'https://youtu.be/EE2S8umlsBQ?si=tESWpfXlcyvZEIyZ', external: true },
       { label: 'Visit demo', href: 'https://flashcard-saas-ecru.vercel.app/', external: true },
     ],
   },
@@ -99,7 +99,7 @@ export const portfolioProjects: PortfolioProject[] = [
     images: [{ src: '/projects/ai-chatbot.webp', full: '/projects/full/ai-chatbot.JPG', alt: 'AI Chat Support Bot chat interface.', caption: 'Chat Support Bot interface' }],
     links: [
       { label: 'View repository', href: 'https://github.com/Noah-Adofina/chat-support', external: true },
-      { label: 'Watch preview', href: 'https://www.youtube.com/watch?v=jhW8qqaSUR8', external: true },
+      { label: 'Watch preview', href: 'https://youtu.be/vLU8OfK46-E?si=rwYVMG6f5HfR3sO_', external: true },
     ],
   },
   {
@@ -108,7 +108,7 @@ export const portfolioProjects: PortfolioProject[] = [
     context: 'The original write-up documents Next.js, OpenAI, and Pinecone. Its repository link pointed to the unrelated flashcard project, so only the preview is linked here.',
     stack: ['Next.js', 'OpenAI API', 'Pinecone'],
     images: [{ src: '/projects/ai-rag.webp', full: '/projects/full/ai-rag.JPG', alt: 'Rate My Professor RAG chat interface.', caption: 'RAG app interface' }],
-    links: [{ label: 'Watch preview', href: 'https://www.youtube.com/watch?v=08Ij0BtF71c', external: true }],
+    links: [{ label: 'Watch preview', href: 'https://youtu.be/RZT_AkrK3Is?si=O5YFd8yuSMjCF-lb', external: true }],
   },
   {
     slug: 'pong', title: 'Pong Recreation', category: 'First game project',
