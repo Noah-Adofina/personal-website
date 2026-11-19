@@ -1,0 +1,35 @@
+
+
+.menu-background{
+    display: none;
+    background-color: #333333;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 15;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-button-container{
+    width: 100%;
+}
+
+.menu-close-button{
+    background: none;
+    border: none;
+    font-size: 3em;
+    margin: 25px 0 0 25px;
+    color: #98B4A6;
+}
+
+.navigation-link{
+    text-decoration: none;;
+}
+
+.navigation-container{
+    color: #98B4A6;
+    font-family: "Alata", sans-serif;
+    margin-top: 50px;
+    font-size: 2em;
+}

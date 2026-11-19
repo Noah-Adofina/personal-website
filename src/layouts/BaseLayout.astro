@@ -1,0 +1,115 @@
+---
+import '../styles/base.css';
+import ImageLightbox from '../components/ImageLightbox.astro';
+interface Props {
+  title: string;
+  description: string;
+  active?: 'editorial' | 'showcase' | 'playground';
+}
+const { title, description, active } = Astro.props;
+const isPrototype = active !== undefined;
+const route = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isHome = route === '/';
+const isWork = route === '/work' || route.startsWith('/work/');
+const isResume = route === '/resume';
+const isAbout = route === '/about';
+const isContact = route === '/contact';
+const canonicalUrl = new URL(isHome ? '/' : `${route}/`, Astro.site).toString();
+const socialImage = new URL(route === '/work/pablomi' ? '/projects/pablomi-chat.webp' : '/projects/pablomi-login.webp', Astro.site).toString();
+const socialImageAlt = route === '/work/pablomi'
+  ? 'Pablomi chat interface with a friends sidebar and conversation'
+  : 'Pablomi sign-in screen with its mascot and welcome branding';
+const noIndex = isPrototype || route === '/404';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noIndex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Noah Adofina" />
+    <meta property="og:title" content={`${title} · Noah Adofina`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} · Noah Adofina`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="theme-color" content="#101214" />
+    <title>{title} · Noah Adofina</title>
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class:list={['site-header', { 'portfolio-header': !isPrototype }]}>
+      <a class="wordmark" href="/" aria-label="Noah Adofina, home">NOAH<span class="wordmark-dot">.</span>ADOFINA</a>
+      {isPrototype ? (
+        <>
+          <nav class="prototype-nav" aria-label="Prototype directions">
+            <a href="/prototypes/editorial" aria-current={active === 'editorial' ? 'page' : undefined}>Editorial</a>
+            <a href="/prototypes/showcase" aria-current={active === 'showcase' ? 'page' : undefined}>Showcase</a>
+            <a href="/prototypes/playground" aria-current={active === 'playground' ? 'page' : undefined}>Playground</a>
+          </nav>
+          <span class="header-note">SOFTWARE ENGINEER<br />PORTFOLIO STUDIES</span>
+        </>
+      ) : (
+        <>
+          <nav class="portfolio-nav" aria-label="Main navigation">
+            <a href="/" aria-current={isHome ? 'page' : undefined}>Home</a>
+            <a href="/work" aria-current={isWork ? 'page' : undefined}>Work</a>
+            <a href="/about" aria-current={isAbout ? 'page' : undefined}>About</a>
+            <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume</a>
+            <a href="/contact" aria-current={isContact ? 'page' : undefined}>Contact</a>
+          </nav>
+          <details class="mobile-nav" data-mobile-nav>
+            <summary><span class="menu-open-label">Menu</span><span class="menu-close-label">Close</span><span aria-hidden="true" class="menu-symbol">☰</span></summary>
+            <nav aria-label="Mobile navigation">
+              <a href="/" aria-current={isHome ? 'page' : undefined}>Home</a>
+              <a href="/work" aria-current={isWork ? 'page' : undefined}>Work</a>
+              <a href="/about" aria-current={isAbout ? 'page' : undefined}>About</a>
+              <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume</a>
+              <a href="/contact" aria-current={isContact ? 'page' : undefined}>Contact</a>
+            </nav>
+          </details>
+        </>
+      )}
+    </header>
+    <slot />
+    {!isPrototype && <ImageLightbox />}
+    <footer class="site-footer">
+      <span>NOAH ADOFINA / SOFTWARE ENGINEER</span>
+      {isPrototype ? <span>THREE DIRECTIONS. REAL PROJECTS.</span> : <a href="/">BACK TO TOP ↑</a>}
+    </footer>
+    {!isPrototype && <script src="../scripts/portfolio-motion.ts"></script>}
+    {!isPrototype && <script>
+      const mobileNav = document.querySelector<HTMLDetailsElement>('[data-mobile-nav]');
+      if (mobileNav) {
+        mobileNav.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && mobileNav.open) {
+            mobileNav.open = false;
+            mobileNav.querySelector('summary')?.focus();
+          }
+        });
+        document.addEventListener('click', (event) => {
+          if (mobileNav.open && event.target instanceof Node && !mobileNav.contains(event.target)) mobileNav.open = false;
+        });
+        window.matchMedia('(min-width: 761px)').addEventListener('change', (event) => {
+          if (event.matches) mobileNav.open = false;
+        });
+      }
+    </script>}
+  </body>
+</html>

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PablomiPlaceholder from '../../components/PablomiPlaceholder.astro';
+import { projects } from '../../data/projects';
+---
+<BaseLayout title="Digital Playground" description="An interactive portfolio concept for exploring Noah Adofina's real software projects." active="playground">
+  <main id="main" class="playground">
+    <section class="playground-hero" aria-labelledby="playground-title">
+      <div class="playground-copy">
+        <p class="eyebrow">PORTFOLIO AS PLAYGROUND / NOAH ADOFINA</p>
+        <h1 id="playground-title">MAKE.<br /><span class="outline">BREAK.</span><br /><span class="serif">Explore.</span></h1>
+        <p class="copy">Software is more interesting when you can get your hands on it. Pick a project and take a look around.</p>
+        <div class="interaction-hint micro"><span class="hint-spark" aria-hidden="true">✳</span> TAP, CLICK, OR USE ARROW KEYS</div>
+      </div>
+      <div class="project-machine" aria-label="Interactive project explorer">
+        <div class="machine-bar"><span class="micro">NOAH.EXE / PROJECT EXPLORER</span><span class="machine-light" aria-hidden="true"></span></div>
+        <div class="machine-screen" id="machine-screen">
+          {projects.map((project, index) => (
+            <article class:list={['machine-project', { active: index === 0 }]} data-index={index} aria-hidden={index !== 0 ? 'true' : undefined}>
+              <div class="screen-image">{project.image ? <img src={project.image} alt={project.alt ?? ''} width="1200" height="600" loading={index === 0 ? 'eager' : 'lazy'} /> : <PablomiPlaceholder />}</div>
+              <div class="screen-overlay"><span class="micro">RUNNING PROJECT 0{index + 1}</span><span class="screen-symbol" aria-hidden="true">✳</span></div>
+            </article>
+          ))}
+        </div>
+        <div class="machine-info" aria-live="polite">
+          <div><p class="eyebrow" id="machine-category">{projects[0].category}</p><h2 id="machine-title">{projects[0].title}</h2><p id="machine-summary">{projects[0].summary}</p></div>
+          <a id="machine-link" class="project-link" target="_blank" rel="noopener noreferrer" hidden>Open project</a>
+          <span id="machine-private" class="project-status micro">IN DEVELOPMENT / PRIVATE TESTING</span>
+        </div>
+        <div class="machine-status micro"><span id="machine-stack">{projects[0].stack}</span><span id="machine-count">01 / 03</span></div>
+      </div>
+    </section>
+    <section class="project-selector" aria-label="Choose a project">
+      <p class="eyebrow">CHOOSE YOUR NEXT WINDOW</p>
+      <div class="selector-grid">
+        {projects.map((project, index) => (
+          <button class:list={['selector-button', { active: index === 0 }]} type="button" data-project={index} aria-pressed={index === 0 ? 'true' : 'false'}>
+            <span class="selector-top micro">0{index + 1} / {project.category.toUpperCase()}</span>
+            <strong>{project.shortTitle}</strong>
+            <span class="selector-bottom micro">OPEN PROJECT <span aria-hidden="true">↗</span></span>
+          </button>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+<script>
+  import { projects } from '../../data/projects';
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('.machine-project'));
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.selector-button'));
+  const screen = document.querySelector<HTMLElement>('#machine-screen');
+  const title = document.querySelector<HTMLElement>('#machine-title');
+  const summary = document.querySelector<HTMLElement>('#machine-summary');
+  const category = document.querySelector<HTMLElement>('#machine-category');
+  const stack = document.querySelector<HTMLElement>('#machine-stack');
+  const count = document.querySelector<HTMLElement>('#machine-count');
+  const link = document.querySelector<HTMLAnchorElement>('#machine-link');
+  const privateStatus = document.querySelector<HTMLElement>('#machine-private');
+  let current = 0;
+  function select(index: number) {
+    current = (index + projects.length) % projects.length;
+    const project = projects[current];
+    panels.forEach((panel, i) => {
+      panel.classList.toggle('active', i === current);
+      panel.setAttribute('aria-hidden', String(i !== current));
+    });
+    buttons.forEach((button, i) => {
+      button.classList.toggle('active', i === current);
+      button.setAttribute('aria-pressed', String(i === current));
+    });
+    if (title) title.textContent = project.title;
+    if (summary) summary.textContent = project.summary;
+    if (category) category.textContent = project.category;
+    if (stack) stack.textContent = project.stack;
+    if (count) count.textContent = `0${current + 1} / 0${projects.length}`;
+    if (link) {
+      link.hidden = !project.link;
+      if (project.link && project.linkLabel) { link.href = project.link; link.textContent = project.linkLabel; }
+    }
+    if (privateStatus) privateStatus.hidden = Boolean(project.link);
+  }
+  buttons.forEach((button, index) => button.addEventListener('click', () => select(index)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') { select(current + 1); }
+    if (event.key === 'ArrowLeft') { select(current - 1); }
+  });
+  if (screen && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    screen.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      const rect = screen.getBoundingClientRect();
+      screen.style.setProperty('--pointer-x', `${((event.clientX - rect.left) / rect.width - .5) * 12}px`);
+      screen.style.setProperty('--pointer-y', `${((event.clientY - rect.top) / rect.height - .5) * 12}px`);
+    });
+    screen.addEventListener('pointerleave', () => {
+      screen.style.setProperty('--pointer-x', '0px');
+      screen.style.setProperty('--pointer-y', '0px');
+    });
+  }
+</script>
+<style>
+  .playground { overflow: hidden; }
+  .playground-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 6rem); align-items: center; min-height: 760px; padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4rem); background: radial-gradient(circle at 80% 20%, rgba(57,255,20,.06), transparent 45%), var(--ink); }
+  .playground-copy h1 { margin: 1.5rem 0 2rem; font-size: clamp(5rem, 9vw, 11rem); line-height: .76; letter-spacing: -.11em; }
+  .playground-copy .outline { color: transparent; -webkit-text-stroke: 2px var(--paper); }
+  .playground-copy .serif { color: var(--green); letter-spacing: -.05em; font-size: 1.15em; }
+  .copy { max-width: 26rem; font-size: clamp(1.1rem, 1.7vw, 1.45rem); line-height: 1.4; color: var(--muted); }
+  .interaction-hint { display: flex; align-items: center; gap: .7rem; margin-top: 3rem; color: var(--green-soft); }
+  .hint-spark { font-size: 1.4rem; color: var(--green); }
+  .project-machine { position: relative; min-width: 0; border: 2px solid var(--green); background: #171b19; box-shadow: 18px 18px 0 rgba(57,255,20,.15); }
+  .project-machine::after { content: '↘'; position: absolute; right: -2rem; top: -2.5rem; color: var(--pink); font-family: 'Instrument Serif', serif; font-size: 4rem; transform: rotate(-15deg); }
+  .machine-bar { display: flex; justify-content: space-between; align-items: center; padding: .75rem 1rem; border-bottom: 1px solid var(--green); color: var(--green); }
+  .machine-light { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+  .machine-screen { position: relative; aspect-ratio: 1.63; overflow: hidden; background: var(--pink); }
+  .machine-project { position: absolute; inset: 0; opacity: 0; visibility: hidden; transform: scale(1.035); transition: opacity .35s, transform .55s, visibility .35s; }
+  .machine-project.active { opacity: 1; visibility: visible; transform: scale(1); }
+  .screen-image { position: absolute; inset: 1.2rem; overflow: hidden; background: #222; }
+  .screen-image img { width: 100%; height: 100%; object-fit: cover; transform: translate(var(--pointer-x, 0px), var(--pointer-y, 0px)) scale(1.08); transition: transform .25s ease-out; }
+  .machine-project:first-child .screen-image img { object-position: center; }
+  .screen-overlay { position: absolute; inset: auto 0 0; display: flex; justify-content: space-between; align-items: end; padding: 2rem; color: var(--green); text-shadow: 0 1px 6px #000; pointer-events: none; }
+  .screen-overlay .micro { background: var(--ink); padding: .35rem .5rem; }
+  .screen-symbol { font-size: 2rem; line-height: 1; }
+  .machine-info { display: flex; justify-content: space-between; gap: 1.5rem; min-height: 180px; padding: 1.25rem 1.5rem; }
+  .machine-info .eyebrow { margin: 0; }
+  .machine-info h2 { margin: .3rem 0; font-size: clamp(1.6rem, 2.6vw, 3.2rem); letter-spacing: -.06em; }
+  .machine-info p:last-child { max-width: 27rem; margin: .5rem 0 0; color: var(--muted); }
+  .machine-info .project-link { align-self: end; flex: none; }
+  .machine-info .project-status { color: var(--green); }
+  .machine-status { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 1.5rem; border-top: 1px solid var(--line); color: var(--green-soft); }
+  .project-selector { padding: 2rem clamp(1.25rem, 4vw, 4rem) clamp(4rem, 7vw, 7rem); }
+  .selector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+  .selector-button { display: flex; flex-direction: column; align-items: start; justify-content: space-between; min-height: 190px; padding: 1.3rem; border: 1px solid var(--line); background: #171b19; color: var(--paper); text-align: left; cursor: pointer; transition: border-color .25s, background .25s, transform .25s; }
+  .selector-button:hover, .selector-button:focus-visible { transform: translateY(-5px); border-color: var(--green); }
+  .selector-button.active { background: var(--green); color: var(--ink); border-color: var(--green); }
+  .selector-button strong { font-size: clamp(1.4rem, 2.5vw, 2.7rem); line-height: .95; letter-spacing: -.065em; }
+  .selector-bottom { display: flex; width: 100%; justify-content: space-between; }
+  @media(max-width: 1100px) { .playground-hero { grid-template-columns: 1fr; } .playground-copy h1 { font-size: clamp(5rem, 13vw, 9rem); } .project-machine { max-width: 850px; } }
+  @media(max-width: 700px) {
+    .playground-hero { min-height: 0; gap: 3rem; }
+    .playground-copy h1 { font-size: clamp(4.5rem, 16vw, 7rem); }
+    .interaction-hint { margin-top: 1.5rem; }
+    .project-machine { box-shadow: 8px 8px 0 rgba(57,255,20,.15); }
+    .project-machine::after { display: none; }
+    .machine-screen { aspect-ratio: 1.2; }
+    .screen-image { inset: .65rem; }
+    .screen-overlay { padding: 1rem; }
+    .machine-info { display: block; min-height: 0; }
+    .machine-info .project-link { margin-top: 1rem; }
+    .selector-grid { grid-template-columns: 1fr; }
+    .selector-button { min-height: 125px; gap: .7rem; }
+  }
+</style>
