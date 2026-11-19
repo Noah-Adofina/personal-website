@@ -1,0 +1,30 @@
+---
+import type { PortfolioImage } from '../data/portfolioProjects';
+interface Props { images: PortfolioImage[]; group: string; }
+const { images, group } = Astro.props;
+---
+<div class:list={['project-gallery', { 'gallery-single': images.length === 1 }]}>
+  {images.map((image, index) => (
+    <figure class:list={['gallery-shot', { 'gallery-primary': index === 0 }]}>
+      <a href={image.full} data-lightbox data-gallery={group} data-lightbox-id={`${group}-${index}`} data-lightbox-alt={image.alt} data-lightbox-caption={image.caption} aria-label={`View ${image.caption} in image viewer`}>
+        <img src={image.src} alt={image.alt} width="1600" height="900" loading="lazy" decoding="async" />
+        {index === 0 && <span class="gallery-open" aria-hidden="true">VIEW SCREENSHOTS</span>}
+      </a>
+      <figcaption>{image.caption}</figcaption>
+    </figure>
+  ))}
+</div>
+<style>
+  .project-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+  .gallery-shot { min-width: 0; margin: 0; }
+  .gallery-primary { grid-column: 1 / -1; }
+  .gallery-shot a { position: relative; display: block; overflow: hidden; padding: .55rem; background: #293034; text-decoration: none; transition: background .25s, transform .25s; }
+  .gallery-shot a:hover, .gallery-shot a:focus-visible { background: #38473e; transform: translateY(-3px); }
+  .gallery-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; background: #152036; }
+  .gallery-shot:not(.gallery-primary) img { aspect-ratio: 16/10; object-fit: cover; object-position: top center; }
+  .gallery-open { position: absolute; right: 1rem; bottom: 1rem; padding: .45rem .65rem; background: #101214; color: #39ff14; font: .75rem 'DM Mono', monospace; letter-spacing: .05em; }
+  figcaption { padding: .45rem 0; color: #aeb5ad; font: .75rem 'DM Mono', monospace; }
+  .gallery-single .gallery-primary { grid-column: 1 / -1; }
+  @media(max-width: 700px) { .project-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gallery-shot a { padding: .35rem; } }
+  @media(prefers-reduced-motion: reduce) { .gallery-shot a { transition: none; } .gallery-shot a:hover, .gallery-shot a:focus-visible { transform: none; } }
+</style>

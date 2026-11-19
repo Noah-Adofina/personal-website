@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PablomiPlaceholder from '../../components/PablomiPlaceholder.astro';
+import { projects } from '../../data/projects';
+---
+<BaseLayout title="Project Showcase" description="An image-led portfolio concept for Noah Adofina's real software projects." active="showcase">
+  <main id="main" class="showcase">
+    <section class="showcase-hero" aria-labelledby="showcase-title">
+      <div class="showcase-intro">
+        <p class="eyebrow">SELECTED SOFTWARE / NOAH ADOFINA</p>
+        <h1 id="showcase-title">The work<br /><span class="serif">speaks first.</span></h1>
+        <p class="intro-copy">A closer look at the things I've built, learned from, and kept building.</p>
+      </div>
+      <div class="gallery" aria-label="Featured projects">
+        <div class="gallery-top"><span class="micro">PROJECT IN FOCUS</span><span class="micro" id="gallery-count">01 / 03</span></div>
+        <div class="gallery-stage">
+          {projects.map((project, index) => (
+            <article class:list={['gallery-slide', { active: index === 0 }]} data-index={index} aria-hidden={index !== 0 ? 'true' : undefined}>
+              <div class="gallery-image">{project.image ? <img src={project.image} alt={project.alt ?? ''} width="1200" height="600" loading={index === 0 ? 'eager' : 'lazy'} /> : <PablomiPlaceholder />}</div>
+              <div class="gallery-caption">
+                <div><p class="eyebrow">{project.category}</p><h2>{project.title}</h2><p>{project.summary}</p></div>
+                {project.link ? <a class="project-link" href={project.link} target="_blank" rel="noopener noreferrer" tabindex={index === 0 ? 0 : -1}>{project.linkLabel}</a> : <span class="project-status">IN DEVELOPMENT / PRIVATE TESTING</span>}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="gallery-controls">
+          <div class="gallery-buttons" aria-label="Project controls">
+            <button type="button" id="previous" aria-label="Previous project">←</button>
+            <button type="button" id="next" aria-label="Next project">→</button>
+          </div>
+          <div class="gallery-progress" aria-hidden="true"><span id="progress-fill"></span></div>
+          <span class="micro">USE CONTROLS OR ARROW KEYS</span>
+        </div>
+      </div>
+    </section>
+    <section class="project-titles" aria-label="All projects in this study">
+      {projects.map((project, index) => (
+        <button class:list={['project-pick', { active: index === 0 }]} type="button" data-project={index} aria-pressed={index === 0 ? 'true' : 'false'}>
+          <span class="micro">0{index + 1}</span><strong>{project.shortTitle}</strong><span class="micro">{project.stack}</span>
+        </button>
+      ))}
+    </section>
+  </main>
+</BaseLayout>
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.gallery-slide'));
+  const picks = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-pick'));
+  const counter = document.querySelector<HTMLElement>('#gallery-count');
+  const fill = document.querySelector<HTMLElement>('#progress-fill');
+  let current = 0;
+  function show(index: number) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      slide.querySelector('a')?.setAttribute('tabindex', active ? '0' : '-1');
+    });
+    picks.forEach((pick, i) => {
+      pick.classList.toggle('active', i === current);
+      pick.setAttribute('aria-pressed', String(i === current));
+    });
+    if (counter) counter.textContent = `0${current + 1} / 0${slides.length}`;
+    if (fill) fill.style.width = `${((current + 1) / slides.length) * 100}%`;
+  }
+  document.querySelector('#previous')?.addEventListener('click', () => show(current - 1));
+  document.querySelector('#next')?.addEventListener('click', () => show(current + 1));
+  picks.forEach((pick, i) => pick.addEventListener('click', () => { show(i); document.querySelector('.gallery')?.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') show(current - 1);
+    if (event.key === 'ArrowRight') show(current + 1);
+  });
+</script>
+<style>
+  .showcase { overflow: hidden; }
+  .showcase-hero { display: grid; grid-template-columns: minmax(260px, .65fr) minmax(0, 1.35fr); min-height: min(850px, 100svh); gap: clamp(2rem, 4vw, 5rem); padding: clamp(2.5rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem); }
+  .showcase-intro { display: flex; flex-direction: column; align-items: start; justify-content: center; }
+  .showcase-intro h1 { margin: 1.5rem 0; font-size: clamp(4rem, 6vw, 8rem); line-height: .87; letter-spacing: -.085em; }
+  .showcase-intro .serif { color: var(--pink); letter-spacing: -.035em; white-space: nowrap; }
+  .intro-copy { max-width: 22rem; font-size: clamp(1.1rem, 1.5vw, 1.5rem); line-height: 1.4; color: var(--muted); }
+  .gallery { align-self: center; min-width: 0; }
+  .gallery-top { display: flex; justify-content: space-between; padding: 0 0 .7rem; color: var(--green); }
+  .gallery-stage { position: relative; min-height: clamp(420px, 43vw, 690px); background: #1c2022; border: 1px solid var(--line); }
+  .gallery-stage::before { content: ''; position: absolute; width: 72%; height: 88%; right: -1.1rem; top: -1.1rem; background: var(--green); z-index: -1; }
+  .gallery-slide { position: absolute; inset: 0; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity .45s ease, transform .45s ease, visibility .45s; }
+  .gallery-slide.active { opacity: 1; visibility: visible; transform: none; }
+  .gallery-image { flex: 1; min-height: 0; display: grid; place-items: center; overflow: hidden; background: #222724; }
+  .gallery-image img { width: 100%; height: 100%; max-height: 490px; object-fit: cover; object-position: center; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+  .gallery-slide.active:hover .gallery-image img { transform: scale(1.035); }
+  .gallery-caption { display: flex; justify-content: space-between; align-items: end; gap: 2rem; min-height: 180px; padding: clamp(1.2rem, 2vw, 2rem); background: var(--paper); color: var(--ink); }
+  .gallery-caption .eyebrow { margin: 0 0 .4rem; color: #2f5b26; }
+  .gallery-caption h2 { margin: 0; font-size: clamp(1.8rem, 3vw, 3.7rem); letter-spacing: -.075em; line-height: 1; }
+  .gallery-caption p:last-child { margin: .7rem 0 0; max-width: 36rem; font-size: .92rem; }
+  .gallery-caption .project-link { flex: none; color: #194f12; border-color: #194f12; }
+  .gallery-caption .project-link:hover { background: var(--green); color: var(--ink); }
+  .gallery-caption .project-status { flex: none; }
+  .gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; margin-top: 1.5rem; }
+  .gallery-buttons { display: flex; gap: .5rem; }
+  .gallery-buttons button { width: 54px; height: 54px; border: 1px solid var(--paper); background: transparent; color: var(--paper); font-size: 1.8rem; cursor: pointer; transition: background .2s, color .2s; }
+  .gallery-buttons button:hover { background: var(--green); color: var(--ink); border-color: var(--green); }
+  .gallery-progress { flex: 1; max-width: 260px; height: 2px; background: var(--line); }
+  .gallery-progress span { display: block; height: 100%; width: 33.333%; background: var(--green); transition: width .3s; }
+  .gallery-controls .micro { color: var(--muted); text-align: right; }
+  .project-titles { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .project-pick { display: flex; flex-direction: column; align-items: start; justify-content: space-between; gap: 2rem; min-height: 175px; padding: 1.5rem clamp(1.25rem, 4vw, 4rem); border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--paper); text-align: left; cursor: pointer; transition: background .25s, color .25s; }
+  .project-pick:last-child { border-right: 0; }
+  .project-pick.active { background: var(--green-soft); color: var(--ink); }
+  .project-pick strong { font-size: clamp(1.3rem, 2vw, 2.1rem); letter-spacing: -.06em; }
+  @media(max-width: 1050px) { .showcase-hero { grid-template-columns: 1fr; } .showcase-intro { display: block; } .showcase-intro h1 { max-width: 700px; } .intro-copy { max-width: 550px; } .gallery-stage { min-height: 600px; } }
+  @media(max-width: 700px) {
+    .showcase-hero { padding-top: 3rem; }
+    .showcase-intro h1 { font-size: clamp(3.9rem, 14vw, 6rem); }
+    .gallery-stage { min-height: 530px; }
+    .gallery-image img { max-height: 300px; }
+    .gallery-caption { display: block; min-height: 220px; }
+    .gallery-caption .project-link { margin-top: .5rem; }
+    .gallery-controls .micro { display: none; }
+    .project-titles { grid-template-columns: 1fr; }
+    .project-pick { min-height: 100px; gap: .5rem; border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+</style>

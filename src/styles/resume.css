@@ -1,0 +1,20 @@
+.resume-page { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); align-items: start; gap: clamp(2rem, 5vw, 6rem); padding: clamp(3.5rem, 6vw, 6rem) clamp(1.25rem, 4vw, 4rem); }
+.resume-heading { max-width: 34rem; }
+.resume-heading h1 { margin: 1rem 0 1.5rem; font-size: clamp(4.2rem, 7vw, 7rem); line-height: .86; letter-spacing: -.09em; }
+.resume-heading .serif { color: var(--pink); margin-inline-start: .08em; letter-spacing: -.04em; }
+.resume-heading > p:not(.eyebrow) { max-width: 34rem; color: var(--muted); font-size: clamp(1.1rem, 1.7vw, 1.5rem); line-height: 1.5; }
+.resume-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.8rem 0; }
+.resume-actions a { display: inline-flex; align-items: center; min-height: 48px; padding: .7rem 1rem; text-decoration: none; font-weight: 600; }
+.resume-primary { background: var(--green); color: var(--ink); }
+.resume-primary:hover { background: var(--green-soft); }
+.resume-secondary { border: 1px solid var(--green); color: var(--green); }
+.resume-secondary:hover { color: var(--paper); }
+.resume-fallback { font-size: .9rem !important; }
+.resume-fallback a { color: var(--green); }
+.resume-mobile-preview { display: none; }
+.resume-frame { min-width: 0; padding: clamp(.5rem, 1vw, 1rem); background: #293034; }
+.resume-preview-label { margin: 0 0 .6rem; color: var(--green-soft); }
+.resume-frame iframe { display: block; width: 100%; height: min(85vh, 1000px); border: 0; background: #f4f5f2; }
+@media(max-width: 1150px) { .resume-page { grid-template-columns: 1fr; } .resume-heading { max-width: 58rem; } .resume-frame { width: min(100%, 920px); } }
+@media(max-width: 600px) { .resume-page { gap: 0; padding-top: clamp(3rem, 10vw, 4rem); padding-bottom: 4rem; } .resume-heading h1 { font-size: clamp(3.6rem, 12vw, 5.5rem); } .resume-frame { display: none; } .resume-mobile-preview { display: block; width: min(100%, 440px); margin-top: 1.5rem; padding: .55rem; border: 1px solid var(--line); background: #293034; text-decoration: none; } .resume-mobile-preview img { width: 100%; height: auto; } .resume-mobile-preview span { display: block; padding: .7rem .15rem .15rem; color: var(--green); font-weight: 600; } .resume-mobile-preview:hover { border-color: var(--green); } .resume-heading > p:not(.eyebrow) { font-size: 1.1rem; line-height: 1.5; } .resume-actions { flex-direction: column; align-items: stretch; gap: .7rem; margin: 1.6rem 0 1rem; } .resume-actions a { justify-content: center; } }
+@media(max-width: 360px) { .resume-heading h1 { font-size: 13vw; } }

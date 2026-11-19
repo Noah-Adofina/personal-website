@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page not found" description="This page could not be found on Noah Adofina's portfolio.">
+  <main id="main" class="not-found">
+    <p class="eyebrow">404 / PAGE NOT FOUND</p>
+    <h1>LOST YOUR <span class="serif">way?</span></h1>
+    <p>That page isn't here. Head back and keep exploring.</p>
+    <a href="/">Back to homepage ↗</a>
+  </main>
+</BaseLayout>
+<style>
+  .not-found { display: flex; min-height: min(76svh, 760px); flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 4vw, 4rem); }
+  .not-found h1 { max-width: 12ch; margin: 1rem 0 1.5rem; font-size: clamp(4rem, 9vw, 9rem); line-height: .92; letter-spacing: -.085em; }
+  .not-found .serif { color: var(--pink); margin-inline-start: .08em; letter-spacing: -.04em; }
+  .not-found > p:not(.eyebrow) { max-width: 32rem; margin: 0 0 2rem; color: var(--muted); font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.45; }
+  .not-found a { display: inline-flex; align-items: center; min-height: 48px; padding: .75rem 1rem; background: var(--green); color: var(--ink); font-weight: 700; text-decoration: none; }
+  .not-found a:hover { background: var(--green-soft); }
+  @media(max-width: 420px) { .not-found h1 { font-size: 13vw; } }
+</style>

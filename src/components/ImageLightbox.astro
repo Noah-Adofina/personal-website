@@ -1,0 +1,259 @@
+<dialog class="image-lightbox" aria-label="Screenshot viewer" data-image-lightbox>
+  <div class="lightbox-shell">
+    <div class="lightbox-toolbar">
+      <span class="lightbox-counter" data-counter aria-live="polite"></span>
+      <div class="lightbox-actions">
+        <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+        <button type="button" data-zoom-reset aria-label="Reset image to fit window">Fit</button>
+        <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+        <button type="button" data-close aria-label="Close image viewer">Close ×</button>
+      </div>
+    </div>
+    <div class="lightbox-middle">
+      <button type="button" class="lightbox-step" data-previous aria-label="Previous screenshot">←</button>
+      <div class="lightbox-viewport" data-viewport tabindex="0" aria-label="Screenshot. Use mouse wheel or pinch to zoom; drag to pan when zoomed.">
+        <div class="lightbox-canvas" data-canvas><img data-image alt="" /></div>
+      </div>
+      <button type="button" class="lightbox-step" data-next aria-label="Next screenshot">→</button>
+    </div>
+    <div class="lightbox-footer">
+      <p data-caption></p>
+      <a data-download download>Download original</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-image-lightbox]');
+  if (dialog) {
+    const image = dialog.querySelector<HTMLImageElement>('[data-image]')!;
+    const canvas = dialog.querySelector<HTMLElement>('[data-canvas]')!;
+    const caption = dialog.querySelector<HTMLElement>('[data-caption]')!;
+    const counter = dialog.querySelector<HTMLElement>('[data-counter]')!;
+    const download = dialog.querySelector<HTMLAnchorElement>('[data-download]')!;
+    const viewport = dialog.querySelector<HTMLElement>('[data-viewport]')!;
+    const previous = dialog.querySelector<HTMLButtonElement>('[data-previous]')!;
+    const next = dialog.querySelector<HTMLButtonElement>('[data-next]')!;
+    const zoomOut = dialog.querySelector<HTMLButtonElement>('[data-zoom-out]')!;
+    const zoomIn = dialog.querySelector<HTMLButtonElement>('[data-zoom-in]')!;
+    const zoomReset = dialog.querySelector<HTMLButtonElement>('[data-zoom-reset]')!;
+    let group: HTMLAnchorElement[] = [];
+    let index = 0;
+    let zoom = 1;
+    let fitWidth = 0;
+    let fitHeight = 0;
+    let opener: HTMLElement | null = null;
+    let oldOverflow = '';
+    const pointers = new Map<number, { x: number; y: number }>();
+    let drag: { id: number; x: number; y: number; left: number; top: number } | null = null;
+    let touchStart: { x: number; y: number } | null = null;
+    let pinch: { distance: number; zoom: number } | null = null;
+    let pinched = false;
+
+    const clampZoom = (value: number) => Math.max(1, Math.min(4, value));
+    const render = (anchor?: { x: number; y: number; nx: number; ny: number }) => {
+      if (!image.naturalWidth || !image.naturalHeight || !viewport.clientWidth || !viewport.clientHeight) return;
+      const scale = Math.min(1, viewport.clientWidth / image.naturalWidth, viewport.clientHeight / image.naturalHeight);
+      fitWidth = image.naturalWidth * scale;
+      fitHeight = image.naturalHeight * scale;
+      const width = fitWidth * zoom;
+      const height = fitHeight * zoom;
+      const canvasWidth = Math.max(viewport.clientWidth, width);
+      const canvasHeight = Math.max(viewport.clientHeight, height);
+      image.style.width = `${width}px`;
+      image.style.height = `${height}px`;
+      canvas.style.width = `${canvasWidth}px`;
+      canvas.style.height = `${canvasHeight}px`;
+      viewport.classList.toggle('is-zoomed', zoom > 1);
+      viewport.scrollLeft = anchor ? (canvasWidth - width) / 2 + anchor.nx * width - anchor.x : (canvasWidth - viewport.clientWidth) / 2;
+      viewport.scrollTop = anchor ? (canvasHeight - height) / 2 + anchor.ny * height - anchor.y : (canvasHeight - viewport.clientHeight) / 2;
+      zoomReset.textContent = zoom === 1 ? 'Fit' : `${Math.round(zoom * 100)}%`;
+      zoomOut.disabled = zoom <= 1;
+      zoomIn.disabled = zoom >= 4;
+    };
+
+    const setZoom = (value: number, clientX?: number, clientY?: number) => {
+      const rect = viewport.getBoundingClientRect();
+      const x = clientX === undefined ? viewport.clientWidth / 2 : clientX - rect.left;
+      const y = clientY === undefined ? viewport.clientHeight / 2 : clientY - rect.top;
+      const oldWidth = fitWidth * zoom;
+      const oldHeight = fitHeight * zoom;
+      const anchor = oldWidth && oldHeight ? {
+        x, y,
+        nx: Math.max(0, Math.min(1, (viewport.scrollLeft + x - (canvas.clientWidth - oldWidth) / 2) / oldWidth)),
+        ny: Math.max(0, Math.min(1, (viewport.scrollTop + y - (canvas.clientHeight - oldHeight) / 2) / oldHeight)),
+      } : undefined;
+      zoom = clampZoom(value);
+      render(anchor);
+    };
+
+    const pointerDistance = () => {
+      const [a, b] = [...pointers.values()];
+      return Math.hypot(a.x - b.x, a.y - b.y);
+    };
+    const pointerMidpoint = () => {
+      const [a, b] = [...pointers.values()];
+      return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+    };
+
+    const show = (newIndex: number) => {
+      if (!group.length) return;
+      index = (newIndex + group.length) % group.length;
+      const item = group[index];
+      image.alt = item.dataset.lightboxAlt || '';
+      caption.textContent = item.dataset.lightboxCaption || '';
+      counter.textContent = `${index + 1} / ${group.length}`;
+      download.href = item.href;
+      previous.disabled = group.length < 2;
+      next.disabled = group.length < 2;
+      zoom = 1;
+      image.removeAttribute('style');
+      canvas.removeAttribute('style');
+      image.src = item.href;
+      if (image.complete) requestAnimationFrame(() => render());
+    };
+
+    image.addEventListener('load', () => render());
+    window.addEventListener('resize', () => { if (dialog.open) render(); });
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      const trigger = event.target.closest<HTMLAnchorElement>('a[data-lightbox]');
+      if (!trigger || !dialog.showModal) return;
+      event.preventDefault();
+      const galleryName = trigger.dataset.gallery || trigger.dataset.lightboxId || trigger.href;
+      const seen = new Set<string>();
+      group = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-lightbox]'))
+        .filter((item) => (item.dataset.gallery || item.dataset.lightboxId || item.href) === galleryName)
+        .filter((item) => {
+          const key = item.dataset.lightboxId || item.href;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      opener = trigger;
+      oldOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      dialog.showModal();
+      show(group.findIndex((item) => (item.dataset.lightboxId || item.href) === (trigger.dataset.lightboxId || trigger.href)));
+      dialog.querySelector<HTMLButtonElement>('[data-close]')?.focus();
+    });
+
+    dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+    previous.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    zoomIn.addEventListener('click', () => setZoom(zoom + .5));
+    zoomOut.addEventListener('click', () => setZoom(zoom - .5));
+    zoomReset.addEventListener('click', () => setZoom(1));
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = oldOverflow;
+      image.removeAttribute('src');
+      drag = null;
+      touchStart = null;
+      pinch = null;
+      pinched = false;
+      pointers.clear();
+      opener?.focus();
+      opener = null;
+    });
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft' && group.length > 1 && (zoom === 1 || document.activeElement !== viewport)) { event.preventDefault(); show(index - 1); }
+      if (event.key === 'ArrowRight' && group.length > 1 && (zoom === 1 || document.activeElement !== viewport)) { event.preventDefault(); show(index + 1); }
+      if (event.key === '+' || event.key === '=') { event.preventDefault(); setZoom(zoom + .5); }
+      if (event.key === '-') { event.preventDefault(); setZoom(zoom - .5); }
+      if (event.key === '0') { event.preventDefault(); setZoom(1); }
+      if (event.key === 'Escape') { event.preventDefault(); dialog.close(); }
+    });
+    viewport.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      // Browser trackpad pinch arrives as a ctrl-wheel event; ordinary wheel zooms too.
+      const speed = event.ctrlKey ? .012 : .002;
+      const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientHeight : 1);
+      setZoom(zoom * Math.exp(-delta * speed), event.clientX, event.clientY);
+    }, { passive: false });
+    viewport.addEventListener('dblclick', (event) => {
+      event.preventDefault();
+      setZoom(zoom > 1 ? 1 : 2, event.clientX, event.clientY);
+    });
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'touch') {
+        viewport.setPointerCapture(event.pointerId);
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+        if (pointers.size === 1) touchStart = { x: event.clientX, y: event.clientY };
+        if (pointers.size === 2) {
+          pinch = { distance: pointerDistance(), zoom };
+          pinched = true;
+          drag = null;
+          touchStart = null;
+        }
+      }
+      if (pointers.size > 1 || zoom <= 1) return;
+      drag = { id: event.pointerId, x: event.clientX, y: event.clientY, left: viewport.scrollLeft, top: viewport.scrollTop };
+      viewport.setPointerCapture(event.pointerId);
+    });
+    viewport.addEventListener('pointermove', (event) => {
+      if (pointers.has(event.pointerId)) pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (pinch && pointers.size === 2) {
+        const midpoint = pointerMidpoint();
+        setZoom(pinch.zoom * pointerDistance() / Math.max(1, pinch.distance), midpoint.x, midpoint.y);
+        return;
+      }
+      if (!drag || drag.id !== event.pointerId) return;
+      viewport.scrollLeft = drag.left - (event.clientX - drag.x);
+      viewport.scrollTop = drag.top - (event.clientY - drag.y);
+    });
+    const endPointer = (event: PointerEvent) => {
+      if (drag?.id === event.pointerId) drag = null;
+      const wasPinching = pinched;
+      pointers.delete(event.pointerId);
+      if (pointers.size < 2) pinch = null;
+      if (event.type === 'pointerup' && event.pointerType === 'touch' && touchStart && !wasPinching && zoom === 1 && group.length > 1) {
+        const dx = event.clientX - touchStart.x;
+        const dy = event.clientY - touchStart.y;
+        if (Math.abs(dx) > 65 && Math.abs(dx) > Math.abs(dy) * 1.4) show(index + (dx < 0 ? 1 : -1));
+      }
+      touchStart = null;
+      if (!pointers.size) pinched = false;
+    };
+    viewport.addEventListener('pointerup', endPointer);
+    viewport.addEventListener('pointercancel', endPointer);
+  }
+</script>
+
+<style>
+  .image-lightbox { width: min(96vw, 1500px); max-width: none; max-height: 94dvh; padding: 0; border: 1px solid #66736d; background: #101214; color: #f4f5f2; box-shadow: 0 30px 80px #0009; }
+  .image-lightbox::backdrop { background: rgb(4 6 6 / .9); }
+  .lightbox-shell { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: min(94dvh, 1050px); }
+  .lightbox-toolbar, .lightbox-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 1rem; }
+  .lightbox-toolbar { border-bottom: 1px solid #55605b; }
+  .lightbox-footer { border-top: 1px solid #55605b; }
+  .lightbox-counter { font: .85rem 'DM Mono', monospace; color: #c7ffb0; }
+  .lightbox-actions { display: flex; align-items: center; gap: .3rem; }
+  button { min-width: 44px; min-height: 44px; padding: .4rem .7rem; border: 1px solid #55605b; background: #1d2423; color: inherit; cursor: pointer; transition: background .2s, color .2s; }
+  button:hover:not(:disabled) { background: #39ff14; color: #101214; }
+  button:disabled { opacity: .35; cursor: default; }
+  .lightbox-middle { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; min-height: 0; }
+  .lightbox-step { align-self: center; justify-self: center; font-size: 1.25rem; }
+  .lightbox-viewport { min-width: 0; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-color: #66736d #101214; touch-action: none; }
+  .lightbox-viewport.is-zoomed { cursor: grab; }
+  .lightbox-viewport.is-zoomed:active { cursor: grabbing; }
+  .lightbox-canvas { display: flex; align-items: center; justify-content: center; }
+  .lightbox-canvas img { display: block; max-width: none; max-height: none; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+  .lightbox-footer p { margin: 0; line-height: 1.4; }
+  .lightbox-footer a { display: inline-flex; min-height: 44px; align-items: center; flex: none; color: #39ff14; text-underline-offset: .2em; }
+  @media (max-width: 650px) {
+    .image-lightbox { width: 100vw; max-height: 100dvh; }
+    .lightbox-shell { height: auto; max-height: 100dvh; }
+    .lightbox-middle { position: relative; display: block; height: clamp(180px, 62vw, 65dvh); }
+    .lightbox-viewport { width: 100%; height: 100%; }
+    .lightbox-step { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); min-width: 44px; width: 44px; padding-inline: 0; background: rgb(16 18 20 / .88); }
+    .lightbox-step[data-previous] { left: .25rem; }
+    .lightbox-step[data-next] { right: .25rem; }
+    .lightbox-toolbar, .lightbox-footer { padding: .5rem; }
+    .lightbox-actions { gap: .15rem; }
+    .lightbox-actions button { padding-inline: .35rem; }
+    .lightbox-footer { align-items: start; flex-direction: column; }
+  }
+  @media (max-height: 450px) and (max-width: 650px) { .lightbox-middle { height: 45dvh; } }
+  @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+</style>

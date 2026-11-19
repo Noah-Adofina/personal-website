@@ -1,0 +1,16 @@
+<div class="pablomi-placeholder" role="img" aria-label="Pablomi visual asset pending. The project is in development and private testing; this is a typographic placeholder, not an application screenshot.">
+  <div class="placeholder-meta"><span>FLAGSHIP PROJECT</span><span>PRIVATE TESTING</span></div>
+  <div class="placeholder-center"><span class="placeholder-asterisk" aria-hidden="true">✳</span><strong>PABLOMI</strong><span>VISUAL ASSET PENDING</span></div>
+  <div class="placeholder-bottom"><span>NO PRODUCT SCREENSHOT SHOWN</span><span>MORE SOON</span></div>
+</div>
+<style>
+  .pablomi-placeholder { position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 100%; height: 100%; min-height: 220px; overflow: hidden; padding: clamp(1rem, 2vw, 2rem); background: var(--green); color: var(--ink); font-family: 'DM Mono', monospace; font-size: clamp(.55rem, .85vw, .75rem); letter-spacing: .08em; }
+  .pablomi-placeholder::before { content: ''; position: absolute; inset: 0; opacity: .28; background-image: linear-gradient(90deg, #101214 1px, transparent 1px), linear-gradient(#101214 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+  .placeholder-meta, .placeholder-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; }
+  .placeholder-center { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; text-align: center; }
+  .placeholder-center strong { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.6rem, 6vw, 6.8rem); letter-spacing: -.1em; line-height: .85; }
+  .placeholder-asterisk { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 7vw, 8rem); line-height: .9; animation: spin 18s linear infinite; }
+  .placeholder-center span:last-child { margin-top: 1.5rem; padding: .3rem .5rem; background: var(--ink); color: var(--green); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 600px) { .placeholder-bottom span:first-child { max-width: 8rem; } }
+</style>

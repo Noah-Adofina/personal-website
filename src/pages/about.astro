@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/inner-pages.css';
+
+---
+<BaseLayout title="About" description="About Noah Adofina, a self-taught software engineer building games, web apps, and Pablomi.">
+  <main id="main" class="inner-page about-page">
+    <header class="page-intro">
+      <p class="eyebrow">NOAH ADOFINA / ABOUT</p>
+      <h1>HOW I <span class="serif">got here.</span></h1>
+      <p class="page-lede">I’m a self-taught software engineer. I learned by making things, seeing what broke, and trying again.</p>
+    </header>
+    <section class="page-story" aria-labelledby="story-title">
+      <div class="story-index"><span class="micro">01 / STARTING SMALL</span><h2 id="story-title">FROM GAMES<br />TO SOFTWARE.</h2></div>
+      <div class="story-copy"><p>Games were my way into programming. I built a <a href="/work#pong">Pong recreation</a>, then took on a much bigger idea with <a href="/work#comfy-cafe">Comfy Cafe</a>. I didn’t finish that game, but working on it taught me to break a large idea into smaller systems.</p><p>From there I moved into web apps, including an <a href="/work#inventory-tracker">inventory tracker</a> and a <a href="/work#number-predictor">digit predictor</a>. Each project gave me a different problem to solve, from connecting an interface to stored data to making a model usable in a browser.</p></div>
+    </section>
+    <section class="page-story story-current" aria-labelledby="current-title">
+      <div class="story-index"><span class="micro">02 / RIGHT NOW</span><h2 id="current-title">BUILDING<br /><span class="serif">Pablomi.</span></h2></div>
+      <div class="story-copy"><p>Pablomi is my current independent project: a desktop-first social and messaging app for gamers. I designed and developed its desktop client, interface, API, realtime systems, and supporting tools. It’s functional and preparing for private testing.</p><p>I care about how all the pieces come together, whether something actually works the way it should, and the small details that make it enjoyable to use. I'm always learning something new along the way.</p><div class="page-links"><a href="/work/pablomi">Read about Pablomi ↗</a><a href="/resume">View my resume ↗</a></div></div>
+    </section>
+    <section class="page-story story-values" aria-labelledby="values-title">
+      <div class="story-index"><span class="micro">03 / WHAT MATTERS</span><h2 id="values-title">THE DETAILS<br /><span class="serif">matter.</span></h2></div>
+      <div class="story-copy"><p>I care about fairness and how the software we build affects people. Someone shouldn't have to fight a system to do something simple, and situations outside the usual path deserve attention too.</p><p>I try to make things intuitive, remove unnecessary friction, and treat the people using them with respect. Technology should help people, not take advantage of them.</p></div>
+    </section>
+    <section class="page-personal" aria-labelledby="personal-title">
+      <div class="personal-note">
+        <p class="micro">04 / A LITTLE MORE</p>
+        <h2 id="personal-title">BEYOND <span class="serif">the work.</span></h2>
+        <p>Outside of coding, I spend time with my girlfriend Mika, hang out with Snoopy, play games, and occasionally get distracted by a new idea I want to try. I like making things, whether that's software or something completely unrelated.</p>
+      </div>
+      <figure class="personal-photo">
+        <img src="/images/snoopy-1200.webp" srcset="/images/snoopy-800.webp 800w, /images/snoopy-1200.webp 1200w" sizes="(max-width: 760px) 94vw, 40vw" alt="Snoopy, Noah's white dog, looking toward the camera outdoors with his tongue peeking out." width="1200" height="1200" loading="lazy" decoding="async" />
+        <figcaption>Snoopy, my coding buddy (and occasional supervisor).</figcaption>
+      </figure>
+    </section>
+    <section class="page-close" aria-labelledby="about-close-title"><p class="eyebrow">NEXT STEP</p><h2 id="about-close-title">LET'S <span class="serif">talk.</span></h2><a href="/contact">Get in touch ↗</a></section>
+  </main>
+</BaseLayout>

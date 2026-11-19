@@ -1,0 +1,79 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+.header{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3vw 10px 3vw;
+    border-bottom: 2px solid #98B4A6;
+    box-shadow: 2px 0px 4px black;
+    position: relative; /* Ensures the z-index applies */
+    z-index: 10; /* Puts the header above the hero section */
+}
+
+.menu-button{
+    display: none;
+}
+
+.menu-icon{
+    width: 40px;
+    margin-top: 10px;
+}
+
+.logo{
+    font-family: "Baskervville", serif;
+    text-decoration: none;
+    color: #E6E6FA;
+    font-size: 4vw;
+    white-space: nowrap;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 50vw;
+}
+
+.navlink{
+    text-decoration: none;
+    color: #98B4A6;
+    font-family: "Alata", sans-serif;
+    font-size: larger;
+    transition: color 0.5s;
+}
+
+.navlink:hover{
+    color: #bbe8d3;
+}
+
+.navlink-divider{
+    color: #98B4A6;
+    font-weight: bolder;
+    border-left: solid;
+    border-width: 2px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu-button {
+        display: block;
+        border: none;
+        background: none;
+        font-size: 16px;
+    }
+}

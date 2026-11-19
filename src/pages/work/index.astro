@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import { featuredProjects, archiveProjects } from '../../data/portfolioProjects';
+import '../../styles/work.css';
+const [pablomi, ...otherFeatured] = featuredProjects;
+---
+<BaseLayout title="Work" description="Selected software engineering, game, web, and machine learning projects by Noah Adofina.">
+  <main id="main" class="work-page">
+    <header class="work-intro">
+      <p class="eyebrow">NOAH ADOFINA / PROJECTS</p>
+      <h1>THINGS I&apos;VE, <span class="serif">built.</span></h1>
+      <p>A collection of things I've made while learning software development. Some are finished, some are experiments, and Pablomi is what I'm currently working on.</p>
+    </header>
+
+    <section class="work-flagship" aria-labelledby="work-pablomi-title">
+      <div class="work-flagship-heading">
+        <div><p class="eyebrow">CURRENT FOCUS / PREPARING FOR PRIVATE TESTING</p><h2 id="work-pablomi-title">PABLOMI<span>.</span></h2></div>
+        <div class="work-flagship-copy"><p>{pablomi.summary}</p><p>{pablomi.context}</p><div class="work-links">{pablomi.links.map((link) => <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>{link.label}</a>)}</div></div>
+      </div>
+      <ProjectGallery images={pablomi.images} group="work-pablomi" />
+    </section>
+
+    <section class="work-featured" aria-labelledby="featured-title">
+      <div class="work-section-heading"><p class="eyebrow">FEATURED PROJECTS</p><h2 id="featured-title">MORE <span class="serif">of my work.</span></h2></div>
+      <div class="work-featured-grid">
+        {otherFeatured.map((project) => (
+          <article class="work-card" id={project.slug}>
+            <ProjectGallery images={project.images} group={`work-${project.slug}`} />
+            <div class="work-card-copy"><span class="work-category">{project.category}</span><h3>{project.title}</h3><p>{project.summary}</p><p class="work-context">{project.context}</p><p class="work-stack">{project.stack.join(' / ')}</p><div class="work-links">{project.links.map((link) => <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>{link.label}</a>)}</div></div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="work-archive" aria-labelledby="archive-title">
+      <div class="work-section-heading"><p class="eyebrow">EARLIER EXPERIMENTS</p><h2 id="archive-title">THE <span class="serif">archive.</span></h2><p>Earlier experiments and website projects I’ve kept.</p></div>
+      <div class="work-archive-grid">
+        {archiveProjects.map((project) => (
+          <article class="archive-card" id={project.slug}>
+            <ProjectGallery images={project.images} group={`work-${project.slug}`} />
+            <div class="archive-copy"><span class="work-category">{project.category}</span><h3>{project.title}</h3><p>{project.summary}</p><p class="work-stack">{project.stack.join(' / ')}</p><div class="work-links">{project.links.map((link) => <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>{link.label}</a>)}</div></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
