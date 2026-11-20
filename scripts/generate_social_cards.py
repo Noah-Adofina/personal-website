@@ -80,7 +80,7 @@ def portfolio_card() -> None:
         spaced_label(draw, 862, y, value, "arialbd.ttf", 24, WHITE, 1)
     spaced_label(draw, 88, 546, "SOFTWARE \u2022 PROJECTS \u2022 EXPERIMENTS", "arialbd.ttf", 13, MUTED, 1.4)
     spaced_label(draw, 891, 546, "NOAHADOFINA.COM", "arialbd.ttf", 13, GREEN, 1.1)
-    save(image, "noah-adofina.png")
+    save(image, "noah-adofina-v2.png")
 
 
 def pablomi_card() -> None:
@@ -100,7 +100,7 @@ def pablomi_card() -> None:
                    outline=WHITE, width=2*SCALE)
     label(draw, 88, 546, "INDEPENDENTLY DESIGNED & DEVELOPED", "arialbd.ttf", 13, MUTED)
     label(draw, 891, 546, "NOAHADOFINA.COM", "arialbd.ttf", 13, GREEN)
-    save(image, "pablomi.png")
+    save(image, "pablomi-v2.png")
 
 
 if __name__ == "__main__":

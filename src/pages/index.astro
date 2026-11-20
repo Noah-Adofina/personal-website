@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PablomiExplorer from '../components/PablomiExplorer.astro';
 import { portfolioProjects } from '../data/portfolioProjects';
@@ -32,8 +33,8 @@ const supportingProjects = portfolioProjects.filter((project) => ['comfy-cafe', 
     <section id="work" class="selected-work" aria-labelledby="work-title">
       <div class="section-heading"><div><p class="eyebrow">CURRENT FOCUS</p><h2 id="work-title">FEATURED <span class="serif">work.</span></h2></div><span class="section-number micro">01 / FLAGSHIP PROJECT</span></div>
       <div id="pablomi" class="flagship-showcase"><div class="flagship-intro">
-        <a class="flagship-name" href="/work/pablomi" aria-label="Read the Pablomi case study"><span class="micro">INDEPENDENT PROJECT / DESKTOP FIRST</span><h3>PABLOMI<span class="green-dot">.</span></h3><span class="flagship-open">READ CASE STUDY <span aria-hidden="true">↗</span></span></a>
-        <div class="flagship-copy"><p class="flagship-lede">A desktop-first social and messaging app for gamers, designed and developed independently.</p><p>Conversations, friends, profiles, themes, and voice share one space. The functional app is preparing for private testing.</p><div class="flagship-actions"><a class="text-link" href="https://pablomi.me" target="_blank" rel="noopener noreferrer">Visit Pablomi website ↗</a></div></div>
+        <a class="flagship-name" href="/work/pablomi" aria-label="Read the Pablomi case study"><span class="micro">INDEPENDENT PROJECT / DESKTOP FIRST</span><h3>PABLOMI<span class="green-dot">.</span></h3><span class="flagship-open">READ CASE STUDY <span aria-hidden="true"><ArrowIcon direction="up-right" /></span></span></a>
+        <div class="flagship-copy"><p class="flagship-lede">A desktop-first social and messaging app for gamers, designed and developed independently.</p><p>Conversations, friends, profiles, themes, and voice share one space. The functional app is preparing for private testing.</p><div class="flagship-actions"><a class="text-link" href="https://pablomi.me" target="_blank" rel="noopener noreferrer">Visit Pablomi website <ArrowIcon direction="up-right" /></a></div></div>
       </div>
       <PablomiExplorer /></div>
     </section>
@@ -50,7 +51,7 @@ const supportingProjects = portfolioProjects.filter((project) => ['comfy-cafe', 
           </article>
         ))}
       </div>
-      <div class="all-work-action"><span class="micro">MORE PROJECTS / EXPERIMENTS / ARCHIVE</span><a class="all-work-link" href="/work">See all projects <span aria-hidden="true">↗</span></a></div>
+      <div class="all-work-action"><span class="micro">MORE PROJECTS / EXPERIMENTS / ARCHIVE</span><a class="all-work-link" href="/work">See all projects <span aria-hidden="true"><ArrowIcon direction="up-right" /></span></a></div>
     </section>
 
     <section id="about" class="about-section" aria-labelledby="about-title">
@@ -61,7 +62,7 @@ const supportingProjects = portfolioProjects.filter((project) => ['comfy-cafe', 
     <section id="contact" class="contact-section" aria-labelledby="contact-title">
       <p class="eyebrow">HAVE SOMETHING IN MIND?</p>
       <h2 id="contact-title">LET'S <span class="serif">talk.</span></h2>
-      <div class="contact-bottom"><a class="contact-email" href="mailto:noahadofina@gmail.com">noahadofina@gmail.com</a><a class="text-link" href="/contact">Contact and links ↗</a></div>
+      <div class="contact-bottom"><a class="contact-email" href="mailto:noahadofina@gmail.com">noahadofina@gmail.com</a><a class="text-link" href="/contact">Contact and links <ArrowIcon direction="up-right" /></a></div>
     </section>
   </main>
 </BaseLayout>

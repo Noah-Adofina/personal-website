@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/inner-pages.css';
 ---
@@ -14,11 +15,11 @@ import '../styles/inner-pages.css';
       <p class="contact-main-email">noahadofina@gmail.com</p>
       <div class="contact-actions">
         <button type="button" data-copy-email aria-describedby="copy-email-status">Copy email</button>
-        <a href="mailto:noahadofina@gmail.com">Compose in email app ↗</a>
-        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=noahadofina%40gmail.com" target="_blank" rel="noopener noreferrer">Compose in Gmail ↗</a>
+        <a href="mailto:noahadofina@gmail.com">Compose in email app <ArrowIcon direction="up-right" /></a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=noahadofina%40gmail.com" target="_blank" rel="noopener noreferrer">Compose in Gmail <ArrowIcon direction="up-right" /></a>
       </div>
       <p id="copy-email-status" class="copy-email-status" role="status" aria-live="polite" data-copy-status></p>
-      <div class="contact-detail-grid"><div><span class="micro">ELSEWHERE</span><div class="page-links"><a href="https://github.com/Noah-Adofina" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/noah-adofina/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div><div><span class="micro">MY WORK</span><div class="page-links"><a href="/work">Projects ↗</a><a href="/resume">Resume ↗</a></div></div></div>
+      <div class="contact-detail-grid"><div><span class="micro">ELSEWHERE</span><div class="page-links"><a href="https://github.com/Noah-Adofina" target="_blank" rel="noopener noreferrer">GitHub <ArrowIcon direction="up-right" /></a><a href="https://www.linkedin.com/in/noah-adofina/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowIcon direction="up-right" /></a></div></div><div><span class="micro">MY WORK</span><div class="page-links"><a href="/work">Projects <ArrowIcon direction="up-right" /></a><a href="/resume">Resume <ArrowIcon direction="up-right" /></a></div></div></div>
     </section>
   </main>
 </BaseLayout>

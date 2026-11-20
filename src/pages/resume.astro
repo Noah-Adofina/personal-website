@@ -1,11 +1,12 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/resume.css';
 ---
 <BaseLayout title="Resume" description="View or download Noah Adofina's software engineering resume.">
   <main id="main" class="resume-page">
     <div class="resume-heading"><p class="eyebrow">NOAH ADOFINA / RESUME</p><h1>MY <span class="serif">resume.</span></h1><p>Open the PDF for a readable view, download a copy, or browse the preview.</p><div class="resume-actions"><a class="resume-primary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">View PDF in browser</a><a class="resume-secondary" href="/resume.pdf" download="Noah_Adofina_Resume.pdf">Download resume</a></div><p class="resume-fallback">If the preview does not load, <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">open the PDF directly</a>.</p></div>
-    <a class="resume-mobile-preview" href="/resume.pdf" target="_blank" rel="noopener noreferrer"><img src="/resume-preview.webp" alt="First page of Noah Adofina’s current resume PDF" width="900" height="1165" loading="lazy" decoding="async" /><span>Open full PDF ↗</span></a>
+    <a class="resume-mobile-preview" href="/resume.pdf" target="_blank" rel="noopener noreferrer"><img src="/resume-preview.webp" alt="First page of Noah Adofina’s current resume PDF" width="900" height="1165" loading="lazy" decoding="async" /><span>Open full PDF <ArrowIcon direction="up-right" /></span></a>
     <div class="resume-frame"><p class="resume-preview-label micro">PDF PREVIEW / SCROLL TO READ</p><iframe src="/resume.pdf" title="Noah Adofina resume PDF" loading="lazy"></iframe></div>
   </main>
 </BaseLayout>

@@ -64,6 +64,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .portfolio-header { align-items: center; flex-wrap: nowrap; gap: .75rem; padding-block: .55rem; }
   .portfolio-header .portfolio-nav { display: none; }
   .mobile-nav { display: block; margin-left: auto; }
+  body:has(.mobile-nav[open]) { overflow: hidden; }
   .mobile-nav summary { display: flex; min-width: 76px; min-height: 44px; align-items: center; justify-content: flex-end; gap: .55rem; color: var(--green); cursor: pointer; list-style: none; font: .85rem 'DM Mono', monospace; }
   .mobile-nav summary::-webkit-details-marker { display: none; }
   .mobile-nav summary::marker { content: ''; }
@@ -71,11 +72,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .mobile-nav[open] .menu-close-label { display: inline; }
   .mobile-nav[open] .menu-symbol { font-size: 0; }
   .mobile-nav[open] .menu-symbol::after { content: '×'; font-size: 1.5rem; line-height: 1; }
-  .mobile-nav nav { position: absolute; top: 100%; right: 0; left: 0; display: grid; padding: .7rem clamp(1.25rem, 4vw, 4rem) 1rem; border-bottom: 1px solid var(--green); background: var(--ink); box-shadow: 0 20px 35px rgb(0 0 0 / .35); }
+  .mobile-nav nav { position: absolute; top: 100%; max-height: calc(100dvh - 60px); overflow-y: auto; overscroll-behavior: contain; right: 0; left: 0; display: grid; padding: .7rem clamp(1.25rem, 4vw, 4rem) 1rem; border-bottom: 1px solid var(--green); background: var(--ink); box-shadow: 0 20px 35px rgb(0 0 0 / .35); }
   .mobile-nav nav a { display: flex; min-height: 48px; align-items: center; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 1.15rem; }
   .mobile-nav nav a:last-child { border-bottom: 0; }
   .mobile-nav nav a:hover, .mobile-nav nav a[aria-current='page'] { color: var(--green); }
-  .mobile-nav nav a[aria-current='page']::after { content: '↗'; margin-left: auto; font: .85rem 'DM Mono', monospace; }
+  .mobile-nav nav a[aria-current='page'] .inline-arrow { margin-left: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -83,3 +84,5 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .reveal-pending.reveal-rise { translate: 0 0; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
+
+.inline-arrow { display: inline-block; width: 1em; height: 1em; flex: none; vertical-align: -.13em; margin-left: .22em; }

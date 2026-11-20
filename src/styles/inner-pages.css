@@ -23,9 +23,24 @@
 .personal-note h2 { margin: 1.2rem 0; font-size: clamp(3rem, 5vw, 6rem); line-height: .95; letter-spacing: -.08em; }
 .personal-note .serif { color: var(--pink); margin-inline-start: .08em; letter-spacing: -.04em; }
 .personal-note > p:last-child { max-width: 31rem; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 1.4vw, 1.25rem); line-height: 1.5; }
-.personal-photo { min-width: 0; margin: 0; padding: .65rem; background: var(--paper); transform: rotate(2deg); }
-.personal-photo img { display: block; width: 100%; height: auto; }
-.personal-photo figcaption { padding: .75rem .2rem .15rem; color: var(--ink); font-size: .95rem; font-weight: 600; }
+.personal-gallery-shell { min-width: 0; }
+.personal-gallery { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, max-content); grid-auto-columns: clamp(10rem, 16vw, 13rem); align-items: center; gap: .9rem 1.15rem; max-width: 100%; padding: 1.2rem .7rem; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: .7rem; overscroll-behavior-inline: contain; scrollbar-width: none; }
+.personal-gallery::-webkit-scrollbar { display: none; }
+.personal-photo { width: 100%; min-width: 0; margin: 0; padding: .6rem; background: var(--paper); transform: rotate(-2deg); scroll-snap-align: start; transition: transform .25s ease; }
+.personal-photo:nth-child(3n + 2) { width: 92%; justify-self: end; transform: rotate(2deg) translateY(.2rem); }
+.personal-photo:nth-child(4n + 3) { width: 96%; transform: rotate(-1deg) translateY(-.2rem); }
+.personal-photo:hover, .personal-photo:focus-within { transform: rotate(0) translateY(-.2rem); }
+.personal-photo a { display: block; }
+.personal-photo img { display: block; width: 100%; height: clamp(7.25rem, 10vw, 9.25rem); object-fit: contain; background: #d9dcd7; }
+.personal-photo figcaption { min-height: 2.8rem; padding: .65rem .2rem .1rem; color: var(--ink); font-size: .82rem; font-weight: 600; line-height: 1.25; }
+.personal-gallery:focus-visible { outline-offset: -3px; }
+.personal-gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .1rem .7rem 0; }
+.personal-gallery-controls .micro { color: var(--green-soft); }
+.personal-gallery-buttons { display: flex; gap: .45rem; }
+.personal-gallery-buttons button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); background: transparent; color: var(--paper); cursor: pointer; transition: border-color .2s, color .2s; }
+.personal-gallery-buttons button:hover:not(:disabled) { border-color: var(--green); color: var(--green); }
+.personal-gallery-buttons button:disabled { opacity: .32; cursor: default; }
+.personal-gallery-buttons .inline-arrow { width: 1.1rem; height: 1.1rem; margin: 0; }
 .page-links { display: flex; flex-wrap: wrap; gap: .75rem 1.7rem; margin-top: 1.4rem; }
 .page-links a, .page-close a { display: inline-flex; align-items: center; min-height: 44px; border-bottom: 1px solid var(--green); color: var(--green); text-decoration: none; font-weight: 600; }
 .page-links a:hover, .page-close a:hover { color: var(--paper); }
@@ -45,5 +60,7 @@
 .copy-email-status { min-height: 1.5em; margin: .7rem 0 clamp(2rem, 5vw, 5rem); color: var(--green-soft); font-size: .9rem; }
 .contact-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .contact-detail-grid .page-links { margin-top: .7rem; }
-@media(max-width: 760px) { .personal-photo { width: min(94%, 32rem); justify-self: center; } .page-story, .page-personal, .contact-detail-grid { grid-template-columns: 1fr; } .page-intro h1 { font-size: clamp(3.8rem, 12vw, 6rem); } }
+@media(max-width: 760px) { .personal-gallery { display: flex; gap: 1.1rem; margin-inline: -.3rem; } .personal-photo { flex: 0 0 min(68vw, 17rem); } .personal-photo img { height: min(62vw, 16rem); } .page-story, .page-personal, .contact-detail-grid { grid-template-columns: 1fr; } .page-intro h1 { font-size: clamp(3.8rem, 12vw, 6rem); } }
 @media(max-width: 420px) { .personal-note h2 { font-size: 10vw; } .page-intro h1 { font-size: 12vw; } .contact-main-email { font-size: clamp(1.25rem, 6vw, 1.5rem); } .contact-actions { align-items: stretch; flex-direction: column; } .contact-actions button, .contact-actions a { justify-content: center; } .story-index h2 { font-size: clamp(2.6rem, 11vw, 3.5rem); } }
+
+@media (prefers-reduced-motion: reduce) { .personal-photo { transition: none; } }

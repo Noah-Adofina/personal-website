@@ -1,6 +1,8 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/inner-pages.css';
+import { personalPhotos } from '../data/personalPhotos';
 
 ---
 <BaseLayout title="About" description="About Noah Adofina, a self-taught software engineer building games, web apps, and Pablomi.">
@@ -16,7 +18,7 @@ import '../styles/inner-pages.css';
     </section>
     <section class="page-story story-current" aria-labelledby="current-title">
       <div class="story-index"><span class="micro">02 / RIGHT NOW</span><h2 id="current-title">BUILDING<br /><span class="serif">Pablomi.</span></h2></div>
-      <div class="story-copy"><p>Pablomi is my current independent project: a desktop-first social and messaging app for gamers. I designed and developed its desktop client, interface, API, realtime systems, and supporting tools. It’s functional and preparing for private testing.</p><p>I care about how all the pieces come together, whether something actually works the way it should, and the small details that make it enjoyable to use. I'm always learning something new along the way.</p><div class="page-links"><a href="/work/pablomi">Read about Pablomi ↗</a><a href="/resume">View my resume ↗</a></div></div>
+      <div class="story-copy"><p>Pablomi is my current independent project: a desktop-first social and messaging app for gamers. I designed and developed its desktop client, interface, API, realtime systems, and supporting tools. It’s functional and preparing for private testing.</p><p>I care about how all the pieces come together, whether something actually works the way it should, and the small details that make it enjoyable to use. I'm always learning something new along the way.</p><div class="page-links"><a href="/work/pablomi">Read about Pablomi <ArrowIcon direction="up-right" /></a><a href="/resume">View my resume <ArrowIcon direction="up-right" /></a></div></div>
     </section>
     <section class="page-story story-values" aria-labelledby="values-title">
       <div class="story-index"><span class="micro">03 / WHAT MATTERS</span><h2 id="values-title">THE DETAILS<br /><span class="serif">matter.</span></h2></div>
@@ -28,11 +30,53 @@ import '../styles/inner-pages.css';
         <h2 id="personal-title">BEYOND <span class="serif">the work.</span></h2>
         <p>Outside of coding, I spend time with my girlfriend Mika, hang out with Snoopy, play games, and occasionally get distracted by a new idea I want to try. I like making things, whether that's software or something completely unrelated.</p>
       </div>
-      <figure class="personal-photo">
-        <img src="/images/snoopy-1200.webp" srcset="/images/snoopy-800.webp 800w, /images/snoopy-1200.webp 1200w" sizes="(max-width: 760px) 94vw, 40vw" alt="Snoopy, Noah's white dog, looking toward the camera outdoors with his tongue peeking out." width="1200" height="1200" loading="lazy" decoding="async" />
-        <figcaption>Snoopy, my coding buddy (and occasional supervisor).</figcaption>
-      </figure>
+      <div class="personal-gallery-shell">
+        <div id="personal-gallery" class="personal-gallery" data-personal-gallery role="region" aria-label="Photos of Snoopy, Jax, Bonnie, Lettuce, and Pablo" tabindex="0">
+        {personalPhotos.map((photo, index) => (
+          <figure class="personal-photo">
+            <a href={photo.full} data-lightbox data-gallery="about-personal" data-lightbox-id={`about-personal-${index}`} data-lightbox-alt={photo.alt} data-lightbox-caption={photo.caption} aria-label={`View photo: ${photo.alt}`}>
+              <img src={photo.thumb} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
+            </a>
+            <figcaption>{photo.caption}</figcaption>
+          </figure>
+        ))}
+        </div>
+        <div class="personal-gallery-controls">
+          <span class="micro">26 PHOTOS / SCROLL OR SWIPE</span>
+          <div class="personal-gallery-buttons">
+            <button type="button" data-gallery-prev aria-label="Scroll to previous photos" aria-controls="personal-gallery"><ArrowIcon direction="left" /></button>
+            <button type="button" data-gallery-next aria-label="Scroll to next photos" aria-controls="personal-gallery"><ArrowIcon direction="right" /></button>
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="page-close" aria-labelledby="about-close-title"><p class="eyebrow">NEXT STEP</p><h2 id="about-close-title">LET'S <span class="serif">talk.</span></h2><a href="/contact">Get in touch ↗</a></section>
+    <section class="page-close" aria-labelledby="about-close-title"><p class="eyebrow">NEXT STEP</p><h2 id="about-close-title">LET'S <span class="serif">talk.</span></h2><a href="/contact">Get in touch <ArrowIcon direction="up-right" /></a></section>
   </main>
 </BaseLayout>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-personal-gallery]');
+  const previous = document.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+  const next = document.querySelector<HTMLButtonElement>('[data-gallery-next]');
+  if (gallery && previous && next) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateButtons = () => {
+      previous.disabled = gallery.scrollLeft <= 2;
+      next.disabled = gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2;
+    };
+    const step = (direction: number) => gallery.scrollBy({
+      left: direction * gallery.clientWidth * 0.78,
+      behavior: reducedMotion.matches ? 'auto' : 'smooth',
+    });
+    previous.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    gallery.addEventListener('scroll', updateButtons, { passive: true });
+    gallery.addEventListener('keydown', (event) => {
+      if (event.target !== gallery || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
+      event.preventDefault();
+      step(event.key === 'ArrowLeft' ? -1 : 1);
+    });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  }
+</script>

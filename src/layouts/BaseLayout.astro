@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import '../styles/base.css';
 import ImageLightbox from '../components/ImageLightbox.astro';
 interface Props {
@@ -16,7 +17,7 @@ const isAbout = route === '/about';
 const isContact = route === '/contact';
 const canonicalUrl = new URL(isHome ? '/' : `${route}/`, Astro.site).toString();
 const isPablomi = route === '/work/pablomi';
-const socialImage = new URL(isPablomi ? '/social/pablomi.png' : '/social/noah-adofina.png', Astro.site).toString();
+const socialImage = new URL(isPablomi ? '/social/pablomi-v2.png' : '/social/noah-adofina-v2.png', Astro.site).toString();
 const socialImageAlt = isPablomi
   ? 'Pablomi social and messaging app preview with a real chat screenshot and Noah Adofina branding'
   : 'Noah Adofina portfolio preview with his name in white and pink on a near-black background';
@@ -92,11 +93,11 @@ const structuredData = isHome ? {
           <details class="mobile-nav" data-mobile-nav>
             <summary><span class="menu-open-label">Menu</span><span class="menu-close-label">Close</span><span aria-hidden="true" class="menu-symbol">☰</span></summary>
             <nav aria-label="Mobile navigation">
-              <a href="/" aria-current={isHome ? 'page' : undefined}>Home</a>
-              <a href="/work" aria-current={isWork ? 'page' : undefined}>Work</a>
-              <a href="/about" aria-current={isAbout ? 'page' : undefined}>About</a>
-              <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume</a>
-              <a href="/contact" aria-current={isContact ? 'page' : undefined}>Contact</a>
+              <a href="/" aria-current={isHome ? 'page' : undefined}>Home{isHome && <ArrowIcon />}</a>
+              <a href="/work" aria-current={isWork ? 'page' : undefined}>Work{isWork && <ArrowIcon />}</a>
+              <a href="/about" aria-current={isAbout ? 'page' : undefined}>About{isAbout && <ArrowIcon />}</a>
+              <a href="/resume" aria-current={isResume ? 'page' : undefined}>Resume{isResume && <ArrowIcon />}</a>
+              <a href="/contact" aria-current={isContact ? 'page' : undefined}>Contact{isContact && <ArrowIcon />}</a>
             </nav>
           </details>
         </>
@@ -106,7 +107,7 @@ const structuredData = isHome ? {
     {!isPrototype && <ImageLightbox />}
     <footer class="site-footer">
       <span>NOAH ADOFINA / SOFTWARE ENGINEER</span>
-      {isPrototype ? <span>THREE DIRECTIONS. REAL PROJECTS.</span> : <a href="/">BACK TO TOP ↑</a>}
+      {isPrototype ? <span>THREE DIRECTIONS. REAL PROJECTS.</span> : <a href="/">BACK TO TOP <ArrowIcon direction="up" /></a>}
     </footer>
     {!isPrototype && <script src="../scripts/portfolio-motion.ts"></script>}
     {!isPrototype && <script>

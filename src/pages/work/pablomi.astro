@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../../components/ArrowIcon.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/site.css';
 import '../../styles/pablomi.css';
@@ -6,10 +7,10 @@ import '../../styles/pablomi.css';
 <BaseLayout title="Pablomi — social and messaging app" description="Explore Pablomi, Noah Adofina’s independently designed and developed desktop-first social and messaging app for gamers, preparing for private testing.">
   <main id="main" class="case-study">
     <section class="case-hero" aria-labelledby="case-title">
-      <div class="case-top micro"><a href="/work">← BACK TO WORK</a><span>CURRENT PROJECT / IN DEVELOPMENT</span></div>
+      <div class="case-top micro"><a href="/work"><ArrowIcon direction="left" /> BACK TO WORK</a><span>CURRENT PROJECT / IN DEVELOPMENT</span></div>
       <div class="case-title-grid">
         <div><p class="eyebrow">INDEPENDENT BUILD / DESKTOP FIRST</p><h1 id="case-title">PABLOMI<span>.</span></h1></div>
-        <div class="case-lede"><p>A social and messaging app for gamers, designed around the ways friends stay connected while they play.</p><span class="status-pill">PREPARING FOR PRIVATE TESTING</span><a class="case-site-link" href="https://pablomi.me" target="_blank" rel="noopener noreferrer">Visit Pablomi website ↗</a></div>
+        <div class="case-lede"><p>A social and messaging app for gamers, designed around the ways friends stay connected while they play.</p><span class="status-pill">PREPARING FOR PRIVATE TESTING</span><a class="case-site-link" href="https://pablomi.me" target="_blank" rel="noopener noreferrer">Visit Pablomi website <ArrowIcon direction="up-right" /></a></div>
       </div>
       <figure class="case-lead-shot"><a href="/projects/full/chat.png" data-lightbox data-gallery="pablomi-case" data-lightbox-id="case-chat" data-lightbox-alt="Current Pablomi chat screen with friends sidebar, messages, shared media, and composer." data-lightbox-caption="Pablomi chat / current development build" aria-label="View full Pablomi chat screenshot"><img src="/projects/pablomi-chat.webp" alt="Pablomi chat screen with a friends sidebar, conversation, shared media, and message composer." width="1913" height="1079" fetchpriority="high" decoding="async" /></a><figcaption class="micro">CHAT / CURRENT DEVELOPMENT BUILD · SELECT TO VIEW FULL SCREENSHOT</figcaption></figure>
     </section>

@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../../components/ArrowIcon.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PablomiPlaceholder from '../../components/PablomiPlaceholder.astro';
 import { projects } from '../../data/projects';
@@ -37,7 +38,7 @@ import { projects } from '../../data/projects';
           <button class:list={['selector-button', { active: index === 0 }]} type="button" data-project={index} aria-pressed={index === 0 ? 'true' : 'false'}>
             <span class="selector-top micro">0{index + 1} / {project.category.toUpperCase()}</span>
             <strong>{project.shortTitle}</strong>
-            <span class="selector-bottom micro">OPEN PROJECT <span aria-hidden="true">↗</span></span>
+            <span class="selector-bottom micro">OPEN PROJECT <span aria-hidden="true"><ArrowIcon direction="up-right" /></span></span>
           </button>
         ))}
       </div>
