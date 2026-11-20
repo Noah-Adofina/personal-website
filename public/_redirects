@@ -1,0 +1,18 @@
+# Legacy portfolio pages. Destinations use the canonical non-www domain.
+/index.html https://noahadofina.com/ 301
+/about-me https://noahadofina.com/about/ 301
+/about-me.html https://noahadofina.com/about/ 301
+/my-work https://noahadofina.com/work/ 301
+/my-work.html https://noahadofina.com/work/ 301
+/resume.html https://noahadofina.com/resume/ 301
+/contact.html https://noahadofina.com/contact/ 301
+/images/noah-adofina-resume.pdf https://noahadofina.com/resume.pdf 301
+
+# The old Serenity demo remains available at its new demo path.
+/serenity-yoga-studio https://noahadofina.com/demos/serenity-yoga-studio/ 301
+/serenity-yoga-studio/ https://noahadofina.com/demos/serenity-yoga-studio/ 301
+/serenity-yoga-studio/index.html https://noahadofina.com/demos/serenity-yoga-studio/ 301
+/serenity-yoga-studio/about.html https://noahadofina.com/demos/serenity-yoga-studio/about 301
+/serenity-yoga-studio/classes.html https://noahadofina.com/demos/serenity-yoga-studio/classes 301
+/serenity-yoga-studio/contact.html https://noahadofina.com/demos/serenity-yoga-studio/contact 301
+/serenity-yoga-studio/schedule.html https://noahadofina.com/demos/serenity-yoga-studio/schedule 301
