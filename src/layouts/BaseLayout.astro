@@ -15,11 +15,20 @@ const isResume = route === '/resume';
 const isAbout = route === '/about';
 const isContact = route === '/contact';
 const canonicalUrl = new URL(isHome ? '/' : `${route}/`, Astro.site).toString();
-const socialImage = new URL(route === '/work/pablomi' ? '/projects/pablomi-chat.webp' : '/projects/pablomi-login.webp', Astro.site).toString();
-const socialImageAlt = route === '/work/pablomi'
-  ? 'Pablomi chat interface with a friends sidebar and conversation'
-  : 'Pablomi sign-in screen with its mascot and welcome branding';
+const isPablomi = route === '/work/pablomi';
+const socialImage = new URL(isPablomi ? '/social/pablomi.png' : '/social/noah-adofina.png', Astro.site).toString();
+const socialImageAlt = isPablomi
+  ? 'Pablomi social and messaging app preview with a real chat screenshot and Noah Adofina branding'
+  : 'Noah Adofina portfolio preview with his name in white and pink on a near-black background';
 const noIndex = isPrototype || route === '/404';
+const siteUrl = new URL('/', Astro.site).toString();
+const structuredData = isHome ? {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Person', '@id': `${siteUrl}#person`, name: 'Noah Adofina', url: siteUrl },
+    { '@type': 'WebSite', '@id': `${siteUrl}#website`, name: 'Noah Adofina', url: siteUrl, publisher: { '@id': `${siteUrl}#person` } },
+  ],
+} : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -35,11 +44,17 @@ const noIndex = isPrototype || route === '/404';
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={socialImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} · Noah Adofina`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <meta name="theme-color" content="#101214" />
     <title>{title} · Noah Adofina</title>
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
