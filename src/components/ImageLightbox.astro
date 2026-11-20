@@ -1,3 +1,6 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+---
 <dialog class="image-lightbox" aria-label="Screenshot viewer" data-image-lightbox>
   <div class="lightbox-shell">
     <div class="lightbox-toolbar">
@@ -10,11 +13,11 @@
       </div>
     </div>
     <div class="lightbox-middle">
-      <button type="button" class="lightbox-step" data-previous aria-label="Previous screenshot">←</button>
+      <button type="button" class="lightbox-step" data-previous aria-label="Previous screenshot"><ArrowIcon direction="left" /></button>
       <div class="lightbox-viewport" data-viewport tabindex="0" aria-label="Screenshot. Use mouse wheel or pinch to zoom; drag to pan when zoomed.">
         <div class="lightbox-canvas" data-canvas><img data-image alt="" /></div>
       </div>
-      <button type="button" class="lightbox-step" data-next aria-label="Next screenshot">→</button>
+      <button type="button" class="lightbox-step" data-next aria-label="Next screenshot"><ArrowIcon direction="right" /></button>
     </div>
     <div class="lightbox-footer">
       <p data-caption></p>
@@ -42,6 +45,10 @@
     let zoom = 1;
     let fitWidth = 0;
     let fitHeight = 0;
+    let naturalWidth = 0;
+    let naturalHeight = 0;
+    let showRequest = 0;
+    const preloads = new Map<string, Promise<HTMLImageElement>>();
     let opener: HTMLElement | null = null;
     let oldOverflow = '';
     const pointers = new Map<number, { x: number; y: number }>();
@@ -52,10 +59,10 @@
 
     const clampZoom = (value: number) => Math.max(1, Math.min(4, value));
     const render = (anchor?: { x: number; y: number; nx: number; ny: number }) => {
-      if (!image.naturalWidth || !image.naturalHeight || !viewport.clientWidth || !viewport.clientHeight) return;
-      const scale = Math.min(1, viewport.clientWidth / image.naturalWidth, viewport.clientHeight / image.naturalHeight);
-      fitWidth = image.naturalWidth * scale;
-      fitHeight = image.naturalHeight * scale;
+      if (!naturalWidth || !naturalHeight || !viewport.clientWidth || !viewport.clientHeight) return;
+      const scale = Math.min(1, viewport.clientWidth / naturalWidth, viewport.clientHeight / naturalHeight);
+      fitWidth = naturalWidth * scale;
+      fitHeight = naturalHeight * scale;
       const width = fitWidth * zoom;
       const height = fitHeight * zoom;
       const canvasWidth = Math.max(viewport.clientWidth, width);
@@ -96,8 +103,29 @@
       return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
     };
 
-    const show = (newIndex: number) => {
+    const preload = (url: string) => {
+      const cached = preloads.get(url);
+      if (cached) return cached;
+      const candidate = new Image();
+      candidate.src = url;
+      const ready = (typeof candidate.decode === 'function'
+        ? candidate.decode().then(() => candidate)
+        : new Promise<HTMLImageElement>((resolve, reject) => {
+            candidate.onload = () => resolve(candidate);
+            candidate.onerror = () => reject(new Error(`Could not load ${url}`));
+            if (candidate.complete && candidate.naturalWidth) resolve(candidate);
+          })
+      ).catch((error) => {
+        preloads.delete(url);
+        throw error;
+      });
+      preloads.set(url, ready);
+      return ready;
+    };
+
+    const show = async (newIndex: number) => {
       if (!group.length) return;
+      const request = ++showRequest;
       index = (newIndex + group.length) % group.length;
       const item = group[index];
       image.alt = item.dataset.lightboxAlt || '';
@@ -106,11 +134,44 @@
       download.href = item.href;
       previous.disabled = group.length < 2;
       next.disabled = group.length < 2;
-      zoom = 1;
-      image.removeAttribute('style');
+
+      // Hide the previous image before dropping its fitted dimensions. Otherwise its
+      // intrinsic size briefly fills the viewport while the next PNG loads.
+      image.style.visibility = 'hidden';
+      image.style.width = '0px';
+      image.style.height = '0px';
       canvas.removeAttribute('style');
-      image.src = item.href;
-      if (image.complete) requestAnimationFrame(() => render());
+      viewport.scrollLeft = 0;
+      viewport.scrollTop = 0;
+      viewport.classList.remove('is-zoomed');
+      zoom = 1;
+      fitWidth = fitHeight = naturalWidth = naturalHeight = 0;
+      zoomReset.textContent = 'Fit';
+      zoomOut.disabled = true;
+      zoomIn.disabled = false;
+      drag = null;
+      touchStart = null;
+      pinch = null;
+      pinched = false;
+      pointers.clear();
+
+      // Start neighboring loads now so the next navigation is usually immediate.
+      if (group.length > 1) {
+        void preload(group[(index + 1) % group.length].href).catch(() => {});
+        void preload(group[(index - 1 + group.length) % group.length].href).catch(() => {});
+      }
+      try {
+        const ready = await preload(item.href);
+        if (request !== showRequest || !dialog.open) return;
+        naturalWidth = ready.naturalWidth;
+        naturalHeight = ready.naturalHeight;
+        image.src = item.href;
+        render();
+        image.style.visibility = '';
+      } catch {
+        if (request !== showRequest || !dialog.open) return;
+        caption.textContent = 'Image could not load. Use Download original to try the file directly.';
+      }
     };
 
     image.addEventListener('load', () => render());
@@ -146,6 +207,7 @@
     zoomReset.addEventListener('click', () => setZoom(1));
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener('close', () => {
+      showRequest++;
       document.body.style.overflow = oldOverflow;
       image.removeAttribute('src');
       drag = null;

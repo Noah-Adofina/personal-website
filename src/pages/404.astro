@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../components/ArrowIcon.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Page not found" description="This page could not be found on Noah Adofina's portfolio.">
@@ -6,7 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="eyebrow">404 / PAGE NOT FOUND</p>
     <h1>LOST YOUR <span class="serif">way?</span></h1>
     <p>That page isn't here. Head back and keep exploring.</p>
-    <a href="/">Back to homepage ↗</a>
+    <a href="/">Back to homepage <ArrowIcon direction="up-right" /></a>
   </main>
 </BaseLayout>
 <style>

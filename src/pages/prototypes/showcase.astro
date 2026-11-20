@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../../components/ArrowIcon.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PablomiPlaceholder from '../../components/PablomiPlaceholder.astro';
 import { projects } from '../../data/projects';
@@ -26,8 +27,8 @@ import { projects } from '../../data/projects';
         </div>
         <div class="gallery-controls">
           <div class="gallery-buttons" aria-label="Project controls">
-            <button type="button" id="previous" aria-label="Previous project">←</button>
-            <button type="button" id="next" aria-label="Next project">→</button>
+            <button type="button" id="previous" aria-label="Previous project"><ArrowIcon direction="left" /></button>
+            <button type="button" id="next" aria-label="Next project"><ArrowIcon direction="right" /></button>
           </div>
           <div class="gallery-progress" aria-hidden="true"><span id="progress-fill"></span></div>
           <span class="micro">USE CONTROLS OR ARROW KEYS</span>

@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from './ArrowIcon.astro';
 import { pablomiViews } from '../data/pablomi';
 ---
 <div class="explorer" data-pablomi-explorer>
@@ -22,8 +23,8 @@ import { pablomiViews } from '../data/pablomi';
       ))}
     </div>
     <div class="explorer-arrows">
-      <button type="button" data-previous aria-label="Previous Pablomi view">←</button>
-      <button type="button" data-next aria-label="Next Pablomi view">→</button>
+      <button type="button" data-previous aria-label="Previous Pablomi view"><ArrowIcon direction="left" /></button>
+      <button type="button" data-next aria-label="Next Pablomi view"><ArrowIcon direction="right" /></button>
     </div>
   </div>
   <p class="explorer-note">These are screenshots of the current development build. The interface may change during private testing.</p>

@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from '../../components/ArrowIcon.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PablomiPlaceholder from '../../components/PablomiPlaceholder.astro';
 import { projects } from '../../data/projects';
@@ -34,7 +35,7 @@ const [lead, ...rest] = projects;
             <span class="row-title">{project.title}</span>
             <span class="row-category">{project.category}</span>
             {project.image && <img src={project.image} alt={project.alt ?? ''} width="480" height="240" loading="lazy" />}
-            <span class="row-open">VIEW PROJECT ↗</span>
+            <span class="row-open">VIEW PROJECT <ArrowIcon direction="up-right" /></span>
           </a>
         ))}
       </div>
